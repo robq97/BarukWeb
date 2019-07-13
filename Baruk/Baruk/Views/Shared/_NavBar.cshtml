@@ -1,0 +1,14 @@
+﻿    <nav>
+        <div class="nav-wrapper light-blue darken-4">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                <img style="margin-top:1%; margin-left:1%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("¿Quiénes Somos?", "WhoAreWe", "Information")</li>
+                <li>@Html.ActionLink("¿Porque elegirnos?", "ChooseUs", "Information")</li>
+                <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
+                <li><button class="waves-effect teal accent-4 btn">@Html.Partial("_LoginPartial")</button></li>
+            </ul>
+        </div>
+    </nav>
