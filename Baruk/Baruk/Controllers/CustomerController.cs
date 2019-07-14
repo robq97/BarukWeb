@@ -13,5 +13,29 @@ namespace Baruk.Controllers
         {
             return View();
         }
+
+        // GET: Customer
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
+
+        // GET: Customer
+        public ActionResult AvailableRoutines()
+        {
+            return View();
+        }
+
+        // GET: Customer
+        public ActionResult Membership()
+        {
+            return View();
+        }
+
+        // GET: Customer
+        public ActionResult NewRoutine()
+        {
+            return View();
+        }
     }
 }

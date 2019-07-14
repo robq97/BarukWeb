@@ -49,7 +49,7 @@ namespace Baruk.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Cédula")]
         [EmailAddress]
         public string Email { get; set; }
 
