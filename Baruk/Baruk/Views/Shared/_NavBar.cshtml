@@ -1,19 +1,21 @@
-﻿    <nav>
-        <div class="nav-wrapper light-blue darken-4">
-            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
-                <img style="margin-top:1%; margin-left:1%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("¿Quiénes Somos?", "WhoAreWe", "Information")</li>
-                <li>@Html.ActionLink("¿Porque elegirnos?", "ChooseUs", "Information")</li>
-                <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
-                <li><button class="waves-effect teal accent-4 btn">@Html.Partial("_LoginPartial")</button></li>
-            </ul>
+﻿<nav class="light-blue darken-4">
+    <div class="nav-wrapper ">
+        <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
+            <img style="margin-top:0.5%; margin-left:2%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("¿Quiénes Somos?", "WhoAreWe", "Information")</li>
+            <li>@Html.ActionLink("¿Porque elegirnos?", "ChooseUs", "Information")</li>
+            <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
+            <li><button class="waves-effect waves-light light-green accent-3 btn">@Html.Partial("_LoginPartial")</button></li>
+        </ul>
+    </div>
 
-            @*agregar JS para mostrar navBars*@
+    @*agregar JS para mostrar navBars*@
 
-            @*<ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
+    @*<ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
             <li>@Html.ActionLink("Mi Pefil", "MyProfile", "Customer")</li>
             <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
             <li>@Html.ActionLink("Salir", "", "")</li>
@@ -31,5 +33,11 @@
             <li>@Html.ActionLink("Facturas", "", "")</li>
             <li>@Html.ActionLink("Salir", "", "")</li>
         </ul>*@
-        </div>
-    </nav>
+</nav>
+<ul class="sidenav" id="menu-responsive">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("¿Quiénes Somos?", "WhoAreWe", "Information")</li>
+    <li>@Html.ActionLink("¿Porque elegirnos?", "ChooseUs", "Information")</li>
+    <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
+    <li><button class="waves-effect waves-light light-green accent-3 btn">@Html.Partial("_LoginPartial")</button></li>
+</ul>
