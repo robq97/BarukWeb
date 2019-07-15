@@ -192,6 +192,7 @@
     <Content Include="Public\css\materialize.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Public\img\Quienes somos.jpg" />
     <Content Include="Public\img\facebookIcon.png" />
     <Content Include="Public\img\gymnasticsSmall.png" />
     <Content Include="Public\img\InstagramIcon.png" />
