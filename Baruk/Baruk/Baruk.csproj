@@ -184,6 +184,19 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MDescuento.cs" />
+    <Compile Include="Models\MGenero.cs" />
+    <Compile Include="Models\MMorosidad.cs" />
+    <Compile Include="Models\MPago.cs" />
+    <Compile Include="Models\MPersona.cs" />
+    <Compile Include="Models\MRutinasClientesAvanzados.cs" />
+    <Compile Include="Models\MTipoCliente.cs" />
+    <Compile Include="Models\MTipoMensualidad.cs" />
+    <Compile Include="Models\MTipoPago.cs" />
+    <Compile Include="Models\MTipoPersona.cs" />
+    <Compile Include="Models\MTipoRutinaAvanzada.cs" />
+    <Compile Include="Models\MTipoSuscripcion.cs" />
+    <Compile Include="Models\MWod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
