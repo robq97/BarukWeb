@@ -1,0 +1,899 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CROSSFITBARUKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="DescuentoID" />
+          </Key>
+          <Property Name="DescuentoID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesDescuento" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="GeneroID" />
+          </Key>
+          <Property Name="GeneroID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescGenero" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Morosidad">
+          <Key>
+            <PropertyRef Name="MorosidadID" />
+          </Key>
+          <Property Name="MorosidadID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescMorosidad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="PagoID" />
+          </Key>
+          <Property Name="PagoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoSuscripcion" Type="int" Nullable="false" />
+          <Property Name="FechaPago" Type="date" Nullable="false" />
+          <Property Name="TipoPagoID" Type="int" Nullable="false" />
+          <Property Name="DescuentoID" Type="tinyint" />
+          <Property Name="TipoMensualidadID" Type="tinyint" Nullable="false" />
+          <Property Name="MorosidadID" Type="tinyint" />
+          <Property Name="TipoClinteID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroCedula" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrimerApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SegundoApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="GeneroID" Type="tinyint" Nullable="false" />
+          <Property Name="DistritoID" Type="int" Nullable="false" />
+          <Property Name="Comentarios" Type="nvarchar" MaxLength="300" />
+          <Property Name="PagoID" Type="int" />
+          <Property Name="RutinaClienteID" Type="smallint" />
+          <Property Name="TipoCliente" Type="tinyint" />
+          <Property Name="WODID" Type="int" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="TipoPersonaID" Type="tinyint" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contrasena" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RutinasClientesAvanzados">
+          <Key>
+            <PropertyRef Name="RutinaClienteID" />
+          </Key>
+          <Property Name="RutinaClienteID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoRutinaID" Type="tinyint" Nullable="false" />
+          <Property Name="DescRutina" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoCliente">
+          <Key>
+            <PropertyRef Name="TipoClienteID" />
+          </Key>
+          <Property Name="TipoClienteID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescTipoCliente" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoMensualidad">
+          <Key>
+            <PropertyRef Name="TipoMensualidadID" />
+          </Key>
+          <Property Name="TipoMensualidadID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescMensualidad" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="TipoPagoID" />
+          </Key>
+          <Property Name="TipoPagoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescTipoPago" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="TipoPersonaID" />
+          </Key>
+          <Property Name="TipoPersonaID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesTipoPersona" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoRutinaAvanzada">
+          <Key>
+            <PropertyRef Name="TipoRutinaID" />
+          </Key>
+          <Property Name="TipoRutinaID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescRutina" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoSuscripcion">
+          <Key>
+            <PropertyRef Name="TipoSuscripcionID" />
+          </Key>
+          <Property Name="TipoSuscripcionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescDetalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WOD">
+          <Key>
+            <PropertyRef Name="WODID" />
+          </Key>
+          <Property Name="WODID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescWOD" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Pago_Descuentos">
+          <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuento">
+              <PropertyRef Name="DescuentoID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="DescuentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_Morosidad">
+          <End Role="Morosidad" Type="Self.Morosidad" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Morosidad">
+              <PropertyRef Name="MorosidadID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="MorosidadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoCliente">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoClinteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoMensualidad">
+          <End Role="TipoMensualidad" Type="Self.TipoMensualidad" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMensualidad">
+              <PropertyRef Name="TipoMensualidadID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoMensualidadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoPago">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="TipoPagoID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoPagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoSuscripcion">
+          <End Role="TipoSuscripcion" Type="Self.TipoSuscripcion" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoSuscripcion">
+              <PropertyRef Name="TipoSuscripcionID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoSuscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Genero1">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="GeneroID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="GeneroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Pago">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="PagoID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="PagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_RutinasClientesAvanzados">
+          <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzados" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RutinasClientesAvanzados">
+              <PropertyRef Name="RutinaClienteID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="RutinaClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoCliente">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="TipoPersonaID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="TipoPersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_WOD">
+          <End Role="WOD" Type="Self.WOD" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WOD">
+              <PropertyRef Name="WODID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="WODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
+          <End Role="TipoRutinaAvanzada" Type="Self.TipoRutinaAvanzada" Multiplicity="1" />
+          <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoRutinaAvanzada">
+              <PropertyRef Name="TipoRutinaID" />
+            </Principal>
+            <Dependent Role="RutinasClientesAvanzados">
+              <PropertyRef Name="TipoRutinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CROSSFITBARUKModelStoreContainer">
+          <EntitySet Name="Descuento" EntityType="Self.Descuento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Morosidad" EntityType="Self.Morosidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RutinasClientesAvanzados" EntityType="Self.RutinasClientesAvanzados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoCliente" EntityType="Self.TipoCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMensualidad" EntityType="Self.TipoMensualidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoRutinaAvanzada" EntityType="Self.TipoRutinaAvanzada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoSuscripcion" EntityType="Self.TipoSuscripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WOD" EntityType="Self.WOD" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Pago_Descuentos" Association="Self.FK_Pago_Descuentos">
+            <End Role="Descuento" EntitySet="Descuento" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_Morosidad" Association="Self.FK_Pago_Morosidad">
+            <End Role="Morosidad" EntitySet="Morosidad" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoCliente" Association="Self.FK_Pago_TipoCliente">
+            <End Role="TipoCliente" EntitySet="TipoCliente" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoMensualidad" Association="Self.FK_Pago_TipoMensualidad">
+            <End Role="TipoMensualidad" EntitySet="TipoMensualidad" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoPago" Association="Self.FK_Pago_TipoPago">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoSuscripcion" Association="Self.FK_Pago_TipoSuscripcion">
+            <End Role="TipoSuscripcion" EntitySet="TipoSuscripcion" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Genero1" Association="Self.FK_Persona_Genero1">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Pago" Association="Self.FK_Persona_Pago">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_RutinasClientesAvanzados" Association="Self.FK_Persona_RutinasClientesAvanzados">
+            <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoCliente" Association="Self.FK_Persona_TipoCliente">
+            <End Role="TipoCliente" EntitySet="TipoCliente" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_WOD" Association="Self.FK_Persona_WOD">
+            <End Role="WOD" EntitySet="WOD" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada" Association="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
+            <End Role="TipoRutinaAvanzada" EntitySet="TipoRutinaAvanzada" />
+            <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CROSSFITBARUKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="DescuentoID" />
+          </Key>
+          <Property Name="DescuentoID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesDescuento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_Descuentos" FromRole="Descuento" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="GeneroID" />
+          </Key>
+          <Property Name="GeneroID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescGenero" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Genero1" FromRole="Genero" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Morosidad">
+          <Key>
+            <PropertyRef Name="MorosidadID" />
+          </Key>
+          <Property Name="MorosidadID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescMorosidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_Morosidad" FromRole="Morosidad" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="PagoID" />
+          </Key>
+          <Property Name="PagoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoSuscripcion" Type="Int32" Nullable="false" />
+          <Property Name="FechaPago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TipoPagoID" Type="Int32" Nullable="false" />
+          <Property Name="DescuentoID" Type="Byte" />
+          <Property Name="TipoMensualidadID" Type="Byte" Nullable="false" />
+          <Property Name="MorosidadID" Type="Byte" />
+          <Property Name="TipoClinteID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Descuento" Relationship="Self.FK_Pago_Descuentos" FromRole="Pago" ToRole="Descuento" />
+          <NavigationProperty Name="Morosidad" Relationship="Self.FK_Pago_Morosidad" FromRole="Pago" ToRole="Morosidad" />
+          <NavigationProperty Name="TipoCliente" Relationship="Self.FK_Pago_TipoCliente" FromRole="Pago" ToRole="TipoCliente" />
+          <NavigationProperty Name="TipoMensualidad" Relationship="Self.FK_Pago_TipoMensualidad" FromRole="Pago" ToRole="TipoMensualidad" />
+          <NavigationProperty Name="TipoPago" Relationship="Self.FK_Pago_TipoPago" FromRole="Pago" ToRole="TipoPago" />
+          <NavigationProperty Name="TipoSuscripcion1" Relationship="Self.FK_Pago_TipoSuscripcion" FromRole="Pago" ToRole="TipoSuscripcion" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Pago" FromRole="Pago" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroCedula" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GeneroID" Type="Byte" Nullable="false" />
+          <Property Name="DistritoID" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PagoID" Type="Int32" />
+          <Property Name="RutinaClienteID" Type="Int16" />
+          <Property Name="TipoCliente" Type="Byte" />
+          <Property Name="WODID" Type="Int32" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TipoPersonaID" Type="Byte" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contrasena" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Genero" Relationship="Self.FK_Persona_Genero1" FromRole="Persona" ToRole="Genero" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK_Persona_Pago" FromRole="Persona" ToRole="Pago" />
+          <NavigationProperty Name="RutinasClientesAvanzado" Relationship="Self.FK_Persona_RutinasClientesAvanzados" FromRole="Persona" ToRole="RutinasClientesAvanzados" />
+          <NavigationProperty Name="TipoCliente1" Relationship="Self.FK_Persona_TipoCliente" FromRole="Persona" ToRole="TipoCliente" />
+          <NavigationProperty Name="TipoPersona" Relationship="Self.FK_Persona_TipoPersona" FromRole="Persona" ToRole="TipoPersona" />
+          <NavigationProperty Name="WOD" Relationship="Self.FK_Persona_WOD" FromRole="Persona" ToRole="WOD" />
+        </EntityType>
+        <EntityType Name="RutinasClientesAvanzado">
+          <Key>
+            <PropertyRef Name="RutinaClienteID" />
+          </Key>
+          <Property Name="RutinaClienteID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoRutinaID" Type="Byte" Nullable="false" />
+          <Property Name="DescRutina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_RutinasClientesAvanzados" FromRole="RutinasClientesAvanzados" ToRole="Persona" />
+          <NavigationProperty Name="TipoRutinaAvanzada" Relationship="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada" FromRole="RutinasClientesAvanzados" ToRole="TipoRutinaAvanzada" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoCliente">
+          <Key>
+            <PropertyRef Name="TipoClienteID" />
+          </Key>
+          <Property Name="TipoClienteID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_TipoCliente" FromRole="TipoCliente" ToRole="Pago" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_TipoCliente" FromRole="TipoCliente" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="TipoMensualidad">
+          <Key>
+            <PropertyRef Name="TipoMensualidadID" />
+          </Key>
+          <Property Name="TipoMensualidadID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescMensualidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_TipoMensualidad" FromRole="TipoMensualidad" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="TipoPagoID" />
+          </Key>
+          <Property Name="TipoPagoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_TipoPago" FromRole="TipoPago" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="TipoPersonaID" />
+          </Key>
+          <Property Name="TipoPersonaID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesTipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_TipoPersona" FromRole="TipoPersona" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="TipoRutinaAvanzada">
+          <Key>
+            <PropertyRef Name="TipoRutinaID" />
+          </Key>
+          <Property Name="TipoRutinaID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescRutina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RutinasClientesAvanzados" Relationship="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada" FromRole="TipoRutinaAvanzada" ToRole="RutinasClientesAvanzados" />
+        </EntityType>
+        <EntityType Name="TipoSuscripcion">
+          <Key>
+            <PropertyRef Name="TipoSuscripcionID" />
+          </Key>
+          <Property Name="TipoSuscripcionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescDetalle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_TipoSuscripcion" FromRole="TipoSuscripcion" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="WOD">
+          <Key>
+            <PropertyRef Name="WODID" />
+          </Key>
+          <Property Name="WODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescWOD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_WOD" FromRole="WOD" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK_Pago_Descuentos">
+          <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuento">
+              <PropertyRef Name="DescuentoID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="DescuentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Genero1">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="GeneroID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="GeneroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_Morosidad">
+          <End Role="Morosidad" Type="Self.Morosidad" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Morosidad">
+              <PropertyRef Name="MorosidadID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="MorosidadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoCliente">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoClinteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoMensualidad">
+          <End Role="TipoMensualidad" Type="Self.TipoMensualidad" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMensualidad">
+              <PropertyRef Name="TipoMensualidadID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoMensualidadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoPago">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="TipoPagoID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoPagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoSuscripcion">
+          <End Role="TipoSuscripcion" Type="Self.TipoSuscripcion" Multiplicity="1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoSuscripcion">
+              <PropertyRef Name="TipoSuscripcionID" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipoSuscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Pago">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="PagoID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="PagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_RutinasClientesAvanzados">
+          <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzado" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RutinasClientesAvanzados">
+              <PropertyRef Name="RutinaClienteID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="RutinaClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoCliente">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="TipoPersonaID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="TipoPersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_WOD">
+          <End Role="WOD" Type="Self.WOD" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WOD">
+              <PropertyRef Name="WODID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="WODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
+          <End Role="TipoRutinaAvanzada" Type="Self.TipoRutinaAvanzada" Multiplicity="1" />
+          <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoRutinaAvanzada">
+              <PropertyRef Name="TipoRutinaID" />
+            </Principal>
+            <Dependent Role="RutinasClientesAvanzados">
+              <PropertyRef Name="TipoRutinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CROSSFITBARUKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Descuentoes" EntityType="Self.Descuento" />
+          <EntitySet Name="Generoes" EntityType="Self.Genero" />
+          <EntitySet Name="Morosidads" EntityType="Self.Morosidad" />
+          <EntitySet Name="Pagoes" EntityType="Self.Pago" />
+          <EntitySet Name="Personas" EntityType="Self.Persona" />
+          <EntitySet Name="RutinasClientesAvanzados" EntityType="Self.RutinasClientesAvanzado" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TipoClientes" EntityType="Self.TipoCliente" />
+          <EntitySet Name="TipoMensualidads" EntityType="Self.TipoMensualidad" />
+          <EntitySet Name="TipoPagoes" EntityType="Self.TipoPago" />
+          <EntitySet Name="TipoPersonas" EntityType="Self.TipoPersona" />
+          <EntitySet Name="TipoRutinaAvanzadas" EntityType="Self.TipoRutinaAvanzada" />
+          <EntitySet Name="TipoSuscripcions" EntityType="Self.TipoSuscripcion" />
+          <EntitySet Name="WODs" EntityType="Self.WOD" />
+          <AssociationSet Name="FK_Pago_Descuentos" Association="Self.FK_Pago_Descuentos">
+            <End Role="Descuento" EntitySet="Descuentoes" />
+            <End Role="Pago" EntitySet="Pagoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Genero1" Association="Self.FK_Persona_Genero1">
+            <End Role="Genero" EntitySet="Generoes" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_Morosidad" Association="Self.FK_Pago_Morosidad">
+            <End Role="Morosidad" EntitySet="Morosidads" />
+            <End Role="Pago" EntitySet="Pagoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoCliente" Association="Self.FK_Pago_TipoCliente">
+            <End Role="TipoCliente" EntitySet="TipoClientes" />
+            <End Role="Pago" EntitySet="Pagoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoMensualidad" Association="Self.FK_Pago_TipoMensualidad">
+            <End Role="TipoMensualidad" EntitySet="TipoMensualidads" />
+            <End Role="Pago" EntitySet="Pagoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoPago" Association="Self.FK_Pago_TipoPago">
+            <End Role="TipoPago" EntitySet="TipoPagoes" />
+            <End Role="Pago" EntitySet="Pagoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoSuscripcion" Association="Self.FK_Pago_TipoSuscripcion">
+            <End Role="TipoSuscripcion" EntitySet="TipoSuscripcions" />
+            <End Role="Pago" EntitySet="Pagoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Pago" Association="Self.FK_Persona_Pago">
+            <End Role="Pago" EntitySet="Pagoes" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_RutinasClientesAvanzados" Association="Self.FK_Persona_RutinasClientesAvanzados">
+            <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoCliente" Association="Self.FK_Persona_TipoCliente">
+            <End Role="TipoCliente" EntitySet="TipoClientes" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersonas" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_WOD" Association="Self.FK_Persona_WOD">
+            <End Role="WOD" EntitySet="WODs" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada" Association="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
+            <End Role="TipoRutinaAvanzada" EntitySet="TipoRutinaAvanzadas" />
+            <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CROSSFITBARUKModelStoreContainer" CdmEntityContainer="CROSSFITBARUKEntities">
+          <EntitySetMapping Name="Descuentoes">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Descuento">
+              <MappingFragment StoreEntitySet="Descuento">
+                <ScalarProperty Name="DescuentoID" ColumnName="DescuentoID" />
+                <ScalarProperty Name="DesDescuento" ColumnName="DesDescuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generoes">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="GeneroID" ColumnName="GeneroID" />
+                <ScalarProperty Name="DescGenero" ColumnName="DescGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Morosidads">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Morosidad">
+              <MappingFragment StoreEntitySet="Morosidad">
+                <ScalarProperty Name="MorosidadID" ColumnName="MorosidadID" />
+                <ScalarProperty Name="DescMorosidad" ColumnName="DescMorosidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagoes">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="PagoID" ColumnName="PagoID" />
+                <ScalarProperty Name="TipoSuscripcion" ColumnName="TipoSuscripcion" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="TipoPagoID" ColumnName="TipoPagoID" />
+                <ScalarProperty Name="DescuentoID" ColumnName="DescuentoID" />
+                <ScalarProperty Name="TipoMensualidadID" ColumnName="TipoMensualidadID" />
+                <ScalarProperty Name="MorosidadID" ColumnName="MorosidadID" />
+                <ScalarProperty Name="TipoClinteID" ColumnName="TipoClinteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="NumeroCedula" ColumnName="NumeroCedula" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="GeneroID" ColumnName="GeneroID" />
+                <ScalarProperty Name="DistritoID" ColumnName="DistritoID" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="PagoID" ColumnName="PagoID" />
+                <ScalarProperty Name="RutinaClienteID" ColumnName="RutinaClienteID" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="WODID" ColumnName="WODID" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="TipoPersonaID" ColumnName="TipoPersonaID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RutinasClientesAvanzados">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.RutinasClientesAvanzado">
+              <MappingFragment StoreEntitySet="RutinasClientesAvanzados">
+                <ScalarProperty Name="RutinaClienteID" ColumnName="RutinaClienteID" />
+                <ScalarProperty Name="TipoRutinaID" ColumnName="TipoRutinaID" />
+                <ScalarProperty Name="DescRutina" ColumnName="DescRutina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoClientes">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoCliente">
+              <MappingFragment StoreEntitySet="TipoCliente">
+                <ScalarProperty Name="TipoClienteID" ColumnName="TipoClienteID" />
+                <ScalarProperty Name="DescTipoCliente" ColumnName="DescTipoCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMensualidads">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoMensualidad">
+              <MappingFragment StoreEntitySet="TipoMensualidad">
+                <ScalarProperty Name="TipoMensualidadID" ColumnName="TipoMensualidadID" />
+                <ScalarProperty Name="DescMensualidad" ColumnName="DescMensualidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPagoes">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoPago">
+              <MappingFragment StoreEntitySet="TipoPago">
+                <ScalarProperty Name="TipoPagoID" ColumnName="TipoPagoID" />
+                <ScalarProperty Name="DescTipoPago" ColumnName="DescTipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPersonas">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoPersona">
+              <MappingFragment StoreEntitySet="TipoPersona">
+                <ScalarProperty Name="TipoPersonaID" ColumnName="TipoPersonaID" />
+                <ScalarProperty Name="DesTipoPersona" ColumnName="DesTipoPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoRutinaAvanzadas">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoRutinaAvanzada">
+              <MappingFragment StoreEntitySet="TipoRutinaAvanzada">
+                <ScalarProperty Name="TipoRutinaID" ColumnName="TipoRutinaID" />
+                <ScalarProperty Name="DescRutina" ColumnName="DescRutina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoSuscripcions">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoSuscripcion">
+              <MappingFragment StoreEntitySet="TipoSuscripcion">
+                <ScalarProperty Name="TipoSuscripcionID" ColumnName="TipoSuscripcionID" />
+                <ScalarProperty Name="DescDetalle" ColumnName="DescDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WODs">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.WOD">
+              <MappingFragment StoreEntitySet="WOD">
+                <ScalarProperty Name="WODID" ColumnName="WODID" />
+                <ScalarProperty Name="DescWOD" ColumnName="DescWOD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
