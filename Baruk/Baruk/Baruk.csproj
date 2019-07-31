@@ -206,7 +206,9 @@
       <DependentUpon>BarukDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MAdmin.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MCliente.cs" />
     <Compile Include="Models\MDescuento.cs" />
     <Compile Include="Models\MGenero.cs" />
     <Compile Include="Models\MMorosidad.cs" />
