@@ -39,14 +39,14 @@ namespace Baruk.Controllers
         }
 
         // GET: Customer
-        public ActionResult NuevaFactura()
+        public ActionResult NewInvoice()
         {
             return View();
         }
 
 
         // GET: Customer
-        public ActionResult VerFactura()
+        public ActionResult ViewInvoice()
         {
             return View();
         }
