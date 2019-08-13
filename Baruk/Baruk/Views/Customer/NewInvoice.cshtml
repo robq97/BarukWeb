@@ -3,7 +3,7 @@
     <form class=" card col s12 grey darken-3" style="margin-top: 2%;">
 
         <div class="input-field col s12">
-            <select>
+            <select required>
                 <option value="" disabled selected>Tipo Suscripción</option>
                 <option value="Mensual">Mensual</option>
                 <option value="Trimestral">Trimestral</option>
@@ -14,11 +14,11 @@
 
         <div class="input-field col s12">
             <label>Fecha Pago</label>
-            <input type="text" class="datepicker">
+            <input type="text" class="datepicker" required>
         </div>
 
         <div class="input-field col s12">
-            <select>
+            <select required>
                 <option value="" disabled selected>Tipo Pago</option>
                 <option value="Efectivo">Efectivo</option>
                 <option value="Tarjeta">Tarjeta</option>
@@ -36,7 +36,7 @@
             <label>Descuento</label>
         </div>
 
-        <div class="input-field col s12">
+        <div class="input-field col s12" required>
             <select>
                 <option value="" disabled selected>Tipo Mensualidad</option>
                 <option value="3 Dias a la Semana">3 Días a la Semana</option>
@@ -54,7 +54,7 @@
             <label>Morosidad</label>
         </div>
 
-        <div class="input-field col s12">
+        <div class="input-field col s12" required>
             <select>
                 <option value="" disabled selected>Tipo Clinte</option>
                 <option value="Normal">Normal</option>
