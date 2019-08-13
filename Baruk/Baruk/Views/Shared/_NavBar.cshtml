@@ -1,4 +1,6 @@
-﻿<nav class="light-blue darken-4">
+﻿@*NavBar Publica*@
+
+<nav class="light-blue darken-4">
     <div class="nav-wrapper">
         <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
@@ -12,27 +14,6 @@
             <li><button class="waves-effect waves-light light-green accent-4 btn">@Html.ActionLink("Iniciar Sesión", "Login", "Login")</button></li>
         </ul>
     </div>
-
-    @*agregar JS para mostrar navBars*@
-
-    @*<ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
-            <li>@Html.ActionLink("Mi Pefil", "MyProfile", "Customer")</li>
-            <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
-            <li>@Html.ActionLink("Salir", "", "")</li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
-            <li>@Html.ActionLink("Mi Pefil", "MyProfile", "Customer")</li>
-            <li>@Html.ActionLink("Rutinas Disponibles", "AvailableRoutines", "Customer")</li>
-            <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
-            <li>@Html.ActionLink("Salir", "", "")</li>
-        </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
-            <li>@Html.ActionLink("Crear Perfil", "NewCustomer", "Customer")</li>
-            <li>@Html.ActionLink("Modificar Membresia", "", "")</li>
-            <li>@Html.ActionLink("Crear Rutina", "", "")</li>
-            <li>@Html.ActionLink("Facturas", "", "")</li>
-            <li>@Html.ActionLink("Salir", "", "")</li>
-        </ul>*@
 </nav>
 <ul class="sidenav" id="menu-responsive">
     <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -41,3 +22,76 @@
     <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
     <li><button class="waves-effect waves-light light-green accent-3 btn">@Html.ActionLink("Iniciar Sesión", "Login", "Login")</button></li>
 </ul>
+
+@*NavBar Cliente regular*@
+<nav class=" deep-orange darken-1">
+    <div class="nav-wrapper">
+        <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
+            <img style="margin-top:0.5%; margin-left:2%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
+            <li>@Html.ActionLink("Mi Perfil", "MyProfile", "Customer")</li>
+            <li>@Html.ActionLink("Mis Facturas", "ViewInvoice", "Customer")</li>
+            <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
+            <li>@Html.ActionLink("Salir", "", "")</li>
+        </ul>
+    </div>
+</nav>
+<ul class="sidenav" id="menu-responsive">
+    <li>@Html.ActionLink("Mi Perfil", "MyProfile", "Customer")</li>
+    <li>@Html.ActionLink("Mis Facturas", "ViewInvoice", "Customer")</li>
+    <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
+    <li>@Html.ActionLink("Salir", "", "")</li>
+</ul>
+
+@*NavBar Cliente avanzado*@
+<nav class="orange accent-3">
+    <div class="nav-wrapper">
+        <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
+            <img style="margin-top:0.5%; margin-left:2%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
+            <li>@Html.ActionLink("Mi Perfil", "MyProfile", "Customer")</li>
+            <li>@Html.ActionLink("Mis Facturas", "ViewInvoice", "Customer")</li>
+            <li>@Html.ActionLink("Rutinas Disponibles", "AvailableRoutines", "Customer")</li>
+            <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
+            <li>@Html.ActionLink("Salir", "", "")</li>
+        </ul>
+    </div>
+</nav>
+<ul class="sidenav" id="menu-responsive">
+    <li>@Html.ActionLink("Mi Perfil", "MyProfile", "Customer")</li>
+    <li>@Html.ActionLink("Mis Facturas", "ViewInvoice", "Customer")</li>
+    <li>@Html.ActionLink("Rutinas Disponibles", "AvailableRoutines", "Customer")</li>
+    <li>@Html.ActionLink("Horarios", "Calendar", "Information")</li>
+    <li>@Html.ActionLink("Salir", "", "")</li>
+</ul>
+
+@*NavBar Admin*@
+<nav class="grey darken-1">
+    <div class="nav-wrapper">
+        <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
+            <img style="margin-top:0.5%; margin-left:2%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
+            <li>@Html.ActionLink("Crear Perfil", "NewCustomer", "Customer")</li>
+            <li>@Html.ActionLink("Modificar Membresia", "", "")</li>
+            <li>@Html.ActionLink("Crear Rutina", "", "")</li>
+            <li>@Html.ActionLink("Agregar Factura", "NewInvoice", "Customer")</li>
+            <li>@Html.ActionLink("Facturas", "", "")</li>
+            <li>@Html.ActionLink("Salir", "", "")</li>
+        </ul>
+    </div>
+</nav>
+<ul class="sidenav" id="menu-responsive">
+    <li>@Html.ActionLink("Crear Perfil", "NewCustomer", "Customer")</li>
+    <li>@Html.ActionLink("Modificar Membresia", "", "")</li>
+    <li>@Html.ActionLink("Crear Rutina", "", "")</li>
+    <li>@Html.ActionLink("Agregar Factura", "NewInvoice", "Customer")</li>
+    <li>@Html.ActionLink("Facturas", "", "")</li>
+    <li>@Html.ActionLink("Salir", "", "")</li>
+</ul>
+

@@ -17,16 +17,16 @@ namespace Baruk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoCliente()
         {
+            this.Clientes = new HashSet<Cliente>();
             this.Pagoes = new HashSet<Pago>();
-            this.Personas = new HashSet<Persona>();
         }
     
         public byte TipoClienteID { get; set; }
         public string DescTipoCliente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pago> Pagoes { get; set; }
+        public virtual ICollection<Cliente> Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Personas { get; set; }
+        public virtual ICollection<Pago> Pagoes { get; set; }
     }
 }

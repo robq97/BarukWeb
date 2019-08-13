@@ -17,7 +17,7 @@ namespace Baruk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RutinasClientesAvanzado()
         {
-            this.Personas = new HashSet<Persona>();
+            this.Clientes = new HashSet<Cliente>();
         }
     
         public short RutinaClienteID { get; set; }
@@ -25,7 +25,7 @@ namespace Baruk.Models
         public string DescRutina { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Personas { get; set; }
+        public virtual ICollection<Cliente> Clientes { get; set; }
         public virtual TipoRutinaAvanzada TipoRutinaAvanzada { get; set; }
     }
 }

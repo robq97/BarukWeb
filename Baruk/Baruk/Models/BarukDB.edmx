@@ -5,6 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CROSSFITBARUKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="PersonaID" Type="smallint" Nullable="false" />
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioEspecial" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswrdEspecial" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonaID" Type="smallint" Nullable="false" />
+          <Property Name="GeneroID" Type="tinyint" Nullable="false" />
+          <Property Name="Comentarios" Type="nvarchar" MaxLength="300" />
+          <Property Name="PagoID" Type="int" Nullable="false" />
+          <Property Name="RutinaClienteID" Type="smallint" />
+          <Property Name="WODID" Type="int" Nullable="false" />
+          <Property Name="TipoClienteID" Type="tinyint" Nullable="false" />
+          <Property Name="UsuarioCliente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswrdCliente" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Descuento">
           <Key>
             <PropertyRef Name="DescuentoID" />
@@ -44,22 +68,12 @@
             <PropertyRef Name="PersonaID" />
           </Key>
           <Property Name="PersonaID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NumeroCedula" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cedula" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PrimerApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SegundoApellido" Type="nvarchar" MaxLength="50" />
-          <Property Name="GeneroID" Type="tinyint" Nullable="false" />
-          <Property Name="DistritoID" Type="int" Nullable="false" />
-          <Property Name="Comentarios" Type="nvarchar" MaxLength="300" />
-          <Property Name="PagoID" Type="int" />
-          <Property Name="RutinaClienteID" Type="smallint" />
-          <Property Name="TipoCliente" Type="tinyint" />
-          <Property Name="WODID" Type="int" />
           <Property Name="FechaInicio" Type="date" Nullable="false" />
-          <Property Name="FechaFin" Type="date" Nullable="false" />
-          <Property Name="TipoPersonaID" Type="tinyint" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Contrasena" Type="varbinary(max)" Nullable="false" />
+          <Property Name="FechaFin" Type="date" />
         </EntityType>
         <EntityType Name="RutinasClientesAvanzados">
           <Key>
@@ -100,13 +114,6 @@
           <Property Name="TipoPagoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DescTipoPago" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="TipoPersona">
-          <Key>
-            <PropertyRef Name="TipoPersonaID" />
-          </Key>
-          <Property Name="TipoPersonaID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DesTipoPersona" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="TipoRutinaAvanzada">
           <Key>
             <PropertyRef Name="TipoRutinaID" />
@@ -128,6 +135,42 @@
           <Property Name="WODID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DescWOD" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Admin_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="PersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="PersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_TipoCliente">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pago_Descuentos">
           <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -202,72 +245,48 @@
         </Association>
         <Association Name="FK_Persona_Genero1">
           <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genero">
               <PropertyRef Name="GeneroID" />
             </Principal>
-            <Dependent Role="Persona">
+            <Dependent Role="Cliente">
               <PropertyRef Name="GeneroID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Persona_Pago">
-          <End Role="Pago" Type="Self.Pago" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pago">
               <PropertyRef Name="PagoID" />
             </Principal>
-            <Dependent Role="Persona">
+            <Dependent Role="Cliente">
               <PropertyRef Name="PagoID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Persona_RutinasClientesAvanzados">
           <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzados" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RutinasClientesAvanzados">
               <PropertyRef Name="RutinaClienteID" />
             </Principal>
-            <Dependent Role="Persona">
+            <Dependent Role="Cliente">
               <PropertyRef Name="RutinaClienteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Persona_TipoCliente">
-          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCliente">
-              <PropertyRef Name="TipoClienteID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="TipoCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_TipoPersona">
-          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoPersona">
-              <PropertyRef Name="TipoPersonaID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="TipoPersonaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Persona_WOD">
-          <End Role="WOD" Type="Self.WOD" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Role="WOD" Type="Self.WOD" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WOD">
               <PropertyRef Name="WODID" />
             </Principal>
-            <Dependent Role="Persona">
+            <Dependent Role="Cliente">
               <PropertyRef Name="WODID" />
             </Dependent>
           </ReferentialConstraint>
@@ -284,7 +303,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CROSSFITBARUKModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Descuento" EntityType="Self.Descuento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Morosidad" EntityType="Self.Morosidad" Schema="dbo" store:Type="Tables" />
@@ -295,10 +347,21 @@
           <EntitySet Name="TipoCliente" EntityType="Self.TipoCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoMensualidad" EntityType="Self.TipoMensualidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoRutinaAvanzada" EntityType="Self.TipoRutinaAvanzada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoSuscripcion" EntityType="Self.TipoSuscripcion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WOD" EntityType="Self.WOD" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Admin_Persona" Association="Self.FK_Admin_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Persona" Association="Self.FK_Cliente_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_TipoCliente" Association="Self.FK_Cliente_TipoCliente">
+            <End Role="TipoCliente" EntitySet="TipoCliente" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pago_Descuentos" Association="Self.FK_Pago_Descuentos">
             <End Role="Descuento" EntitySet="Descuento" />
             <End Role="Pago" EntitySet="Pago" />
@@ -325,27 +388,19 @@
           </AssociationSet>
           <AssociationSet Name="FK_Persona_Genero1" Association="Self.FK_Persona_Genero1">
             <End Role="Genero" EntitySet="Genero" />
-            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Persona_Pago" Association="Self.FK_Persona_Pago">
             <End Role="Pago" EntitySet="Pago" />
-            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Persona_RutinasClientesAvanzados" Association="Self.FK_Persona_RutinasClientesAvanzados">
             <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
-            <End Role="Persona" EntitySet="Persona" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_TipoCliente" Association="Self.FK_Persona_TipoCliente">
-            <End Role="TipoCliente" EntitySet="TipoCliente" />
-            <End Role="Persona" EntitySet="Persona" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
-            <End Role="TipoPersona" EntitySet="TipoPersona" />
-            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Persona_WOD" Association="Self.FK_Persona_WOD">
             <End Role="WOD" EntitySet="WOD" />
-            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
           <AssociationSet Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada" Association="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
             <End Role="TipoRutinaAvanzada" EntitySet="TipoRutinaAvanzada" />
@@ -357,6 +412,37 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CROSSFITBARUKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int16" Nullable="false" />
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioEspecial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswrdEspecial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Admin_Persona" FromRole="Admin" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonaID" Type="Int16" Nullable="false" />
+          <Property Name="GeneroID" Type="Byte" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PagoID" Type="Int32" Nullable="false" />
+          <Property Name="RutinaClienteID" Type="Int16" />
+          <Property Name="WODID" Type="Int32" Nullable="false" />
+          <Property Name="TipoClienteID" Type="Byte" Nullable="false" />
+          <Property Name="UsuarioCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswrdCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Cliente_Persona" FromRole="Cliente" ToRole="Persona" />
+          <NavigationProperty Name="TipoCliente" Relationship="Self.FK_Cliente_TipoCliente" FromRole="Cliente" ToRole="TipoCliente" />
+          <NavigationProperty Name="Genero" Relationship="Self.FK_Persona_Genero1" FromRole="Cliente" ToRole="Genero" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK_Persona_Pago" FromRole="Cliente" ToRole="Pago" />
+          <NavigationProperty Name="RutinasClientesAvanzado" Relationship="Self.FK_Persona_RutinasClientesAvanzados" FromRole="Cliente" ToRole="RutinasClientesAvanzados" />
+          <NavigationProperty Name="WOD" Relationship="Self.FK_Persona_WOD" FromRole="Cliente" ToRole="WOD" />
+        </EntityType>
         <EntityType Name="Descuento">
           <Key>
             <PropertyRef Name="DescuentoID" />
@@ -371,7 +457,7 @@
           </Key>
           <Property Name="GeneroID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DescGenero" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Genero1" FromRole="Genero" ToRole="Persona" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Persona_Genero1" FromRole="Genero" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Morosidad">
           <Key>
@@ -393,41 +479,27 @@
           <Property Name="TipoMensualidadID" Type="Byte" Nullable="false" />
           <Property Name="MorosidadID" Type="Byte" />
           <Property Name="TipoClinteID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Persona_Pago" FromRole="Pago" ToRole="Cliente" />
           <NavigationProperty Name="Descuento" Relationship="Self.FK_Pago_Descuentos" FromRole="Pago" ToRole="Descuento" />
           <NavigationProperty Name="Morosidad" Relationship="Self.FK_Pago_Morosidad" FromRole="Pago" ToRole="Morosidad" />
           <NavigationProperty Name="TipoCliente" Relationship="Self.FK_Pago_TipoCliente" FromRole="Pago" ToRole="TipoCliente" />
           <NavigationProperty Name="TipoMensualidad" Relationship="Self.FK_Pago_TipoMensualidad" FromRole="Pago" ToRole="TipoMensualidad" />
           <NavigationProperty Name="TipoPago" Relationship="Self.FK_Pago_TipoPago" FromRole="Pago" ToRole="TipoPago" />
           <NavigationProperty Name="TipoSuscripcion1" Relationship="Self.FK_Pago_TipoSuscripcion" FromRole="Pago" ToRole="TipoSuscripcion" />
-          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Pago" FromRole="Pago" ToRole="Persona" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="PersonaID" />
           </Key>
           <Property Name="PersonaID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NumeroCedula" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cedula" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GeneroID" Type="Byte" Nullable="false" />
-          <Property Name="DistritoID" Type="Int32" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="PagoID" Type="Int32" />
-          <Property Name="RutinaClienteID" Type="Int16" />
-          <Property Name="TipoCliente" Type="Byte" />
-          <Property Name="WODID" Type="Int32" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TipoPersonaID" Type="Byte" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Contrasena" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Genero" Relationship="Self.FK_Persona_Genero1" FromRole="Persona" ToRole="Genero" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK_Persona_Pago" FromRole="Persona" ToRole="Pago" />
-          <NavigationProperty Name="RutinasClientesAvanzado" Relationship="Self.FK_Persona_RutinasClientesAvanzados" FromRole="Persona" ToRole="RutinasClientesAvanzados" />
-          <NavigationProperty Name="TipoCliente1" Relationship="Self.FK_Persona_TipoCliente" FromRole="Persona" ToRole="TipoCliente" />
-          <NavigationProperty Name="TipoPersona" Relationship="Self.FK_Persona_TipoPersona" FromRole="Persona" ToRole="TipoPersona" />
-          <NavigationProperty Name="WOD" Relationship="Self.FK_Persona_WOD" FromRole="Persona" ToRole="WOD" />
+          <Property Name="FechaFin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_Persona" FromRole="Persona" ToRole="Admin" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Cliente_Persona" FromRole="Persona" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="RutinasClientesAvanzado">
           <Key>
@@ -436,7 +508,7 @@
           <Property Name="RutinaClienteID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TipoRutinaID" Type="Byte" Nullable="false" />
           <Property Name="DescRutina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_RutinasClientesAvanzados" FromRole="RutinasClientesAvanzados" ToRole="Persona" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Persona_RutinasClientesAvanzados" FromRole="RutinasClientesAvanzados" ToRole="Cliente" />
           <NavigationProperty Name="TipoRutinaAvanzada" Relationship="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada" FromRole="RutinasClientesAvanzados" ToRole="TipoRutinaAvanzada" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -455,8 +527,8 @@
           </Key>
           <Property Name="TipoClienteID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DescTipoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Cliente_TipoCliente" FromRole="TipoCliente" ToRole="Cliente" />
           <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_TipoCliente" FromRole="TipoCliente" ToRole="Pago" />
-          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_TipoCliente" FromRole="TipoCliente" ToRole="Persona" />
         </EntityType>
         <EntityType Name="TipoMensualidad">
           <Key>
@@ -473,14 +545,6 @@
           <Property Name="TipoPagoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DescTipoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Pagoes" Relationship="Self.FK_Pago_TipoPago" FromRole="TipoPago" ToRole="Pago" />
-        </EntityType>
-        <EntityType Name="TipoPersona">
-          <Key>
-            <PropertyRef Name="TipoPersonaID" />
-          </Key>
-          <Property Name="TipoPersonaID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DesTipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_TipoPersona" FromRole="TipoPersona" ToRole="Persona" />
         </EntityType>
         <EntityType Name="TipoRutinaAvanzada">
           <Key>
@@ -504,8 +568,92 @@
           </Key>
           <Property Name="WODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DescWOD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_WOD" FromRole="WOD" ToRole="Persona" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Persona_WOD" FromRole="WOD" ToRole="Cliente" />
         </EntityType>
+        <Association Name="FK_Admin_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="PersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="PersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_TipoCliente">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="TipoClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Genero1">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="GeneroID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="GeneroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Pago">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="PagoID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="PagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_RutinasClientesAvanzados">
+          <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzado" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RutinasClientesAvanzados">
+              <PropertyRef Name="RutinaClienteID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="RutinaClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_WOD">
+          <End Role="WOD" Type="Self.WOD" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WOD">
+              <PropertyRef Name="WODID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="WODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pago_Descuentos">
           <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -515,18 +663,6 @@
             </Principal>
             <Dependent Role="Pago">
               <PropertyRef Name="DescuentoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_Genero1">
-          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genero">
-              <PropertyRef Name="GeneroID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="GeneroID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -590,66 +726,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Persona_Pago">
-          <End Role="Pago" Type="Self.Pago" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pago">
-              <PropertyRef Name="PagoID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="PagoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_RutinasClientesAvanzados">
-          <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzado" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RutinasClientesAvanzados">
-              <PropertyRef Name="RutinaClienteID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="RutinaClienteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_TipoCliente">
-          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCliente">
-              <PropertyRef Name="TipoClienteID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="TipoCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_TipoPersona">
-          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoPersona">
-              <PropertyRef Name="TipoPersonaID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="TipoPersonaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_WOD">
-          <End Role="WOD" Type="Self.WOD" Multiplicity="0..1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WOD">
-              <PropertyRef Name="WODID" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="WODID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
           <End Role="TipoRutinaAvanzada" Type="Self.TipoRutinaAvanzada" Multiplicity="1" />
           <End Role="RutinasClientesAvanzados" Type="Self.RutinasClientesAvanzado" Multiplicity="*" />
@@ -663,6 +739,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CROSSFITBARUKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Descuentoes" EntityType="Self.Descuento" />
           <EntitySet Name="Generoes" EntityType="Self.Genero" />
           <EntitySet Name="Morosidads" EntityType="Self.Morosidad" />
@@ -673,17 +751,40 @@
           <EntitySet Name="TipoClientes" EntityType="Self.TipoCliente" />
           <EntitySet Name="TipoMensualidads" EntityType="Self.TipoMensualidad" />
           <EntitySet Name="TipoPagoes" EntityType="Self.TipoPago" />
-          <EntitySet Name="TipoPersonas" EntityType="Self.TipoPersona" />
           <EntitySet Name="TipoRutinaAvanzadas" EntityType="Self.TipoRutinaAvanzada" />
           <EntitySet Name="TipoSuscripcions" EntityType="Self.TipoSuscripcion" />
           <EntitySet Name="WODs" EntityType="Self.WOD" />
-          <AssociationSet Name="FK_Pago_Descuentos" Association="Self.FK_Pago_Descuentos">
-            <End Role="Descuento" EntitySet="Descuentoes" />
-            <End Role="Pago" EntitySet="Pagoes" />
+          <AssociationSet Name="FK_Admin_Persona" Association="Self.FK_Admin_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Persona" Association="Self.FK_Cliente_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_TipoCliente" Association="Self.FK_Cliente_TipoCliente">
+            <End Role="TipoCliente" EntitySet="TipoClientes" />
+            <End Role="Cliente" EntitySet="Clientes" />
           </AssociationSet>
           <AssociationSet Name="FK_Persona_Genero1" Association="Self.FK_Persona_Genero1">
             <End Role="Genero" EntitySet="Generoes" />
-            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Pago" Association="Self.FK_Persona_Pago">
+            <End Role="Pago" EntitySet="Pagoes" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_RutinasClientesAvanzados" Association="Self.FK_Persona_RutinasClientesAvanzados">
+            <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_WOD" Association="Self.FK_Persona_WOD">
+            <End Role="WOD" EntitySet="WODs" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_Descuentos" Association="Self.FK_Pago_Descuentos">
+            <End Role="Descuento" EntitySet="Descuentoes" />
+            <End Role="Pago" EntitySet="Pagoes" />
           </AssociationSet>
           <AssociationSet Name="FK_Pago_Morosidad" Association="Self.FK_Pago_Morosidad">
             <End Role="Morosidad" EntitySet="Morosidads" />
@@ -705,30 +806,40 @@
             <End Role="TipoSuscripcion" EntitySet="TipoSuscripcions" />
             <End Role="Pago" EntitySet="Pagoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Persona_Pago" Association="Self.FK_Persona_Pago">
-            <End Role="Pago" EntitySet="Pagoes" />
-            <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_RutinasClientesAvanzados" Association="Self.FK_Persona_RutinasClientesAvanzados">
-            <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
-            <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_TipoCliente" Association="Self.FK_Persona_TipoCliente">
-            <End Role="TipoCliente" EntitySet="TipoClientes" />
-            <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
-            <End Role="TipoPersona" EntitySet="TipoPersonas" />
-            <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_WOD" Association="Self.FK_Persona_WOD">
-            <End Role="WOD" EntitySet="WODs" />
-            <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
           <AssociationSet Name="FK_RutinasClientesAvanzados_TipoRutinaAvanzada" Association="Self.FK_RutinasClientesAvanzados_TipoRutinaAvanzada">
             <End Role="TipoRutinaAvanzada" EntitySet="TipoRutinaAvanzadas" />
             <End Role="RutinasClientesAvanzados" EntitySet="RutinasClientesAvanzados" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -736,6 +847,32 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CROSSFITBARUKModelStoreContainer" CdmEntityContainer="CROSSFITBARUKEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="UsuarioEspecial" ColumnName="UsuarioEspecial" />
+                <ScalarProperty Name="PasswrdEspecial" ColumnName="PasswrdEspecial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="CROSSFITBARUKModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="GeneroID" ColumnName="GeneroID" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="PagoID" ColumnName="PagoID" />
+                <ScalarProperty Name="RutinaClienteID" ColumnName="RutinaClienteID" />
+                <ScalarProperty Name="WODID" ColumnName="WODID" />
+                <ScalarProperty Name="TipoClienteID" ColumnName="TipoClienteID" />
+                <ScalarProperty Name="UsuarioCliente" ColumnName="UsuarioCliente" />
+                <ScalarProperty Name="PasswrdCliente" ColumnName="PasswrdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Descuentoes">
             <EntityTypeMapping TypeName="CROSSFITBARUKModel.Descuento">
               <MappingFragment StoreEntitySet="Descuento">
@@ -778,22 +915,12 @@
             <EntityTypeMapping TypeName="CROSSFITBARUKModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
                 <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
-                <ScalarProperty Name="NumeroCedula" ColumnName="NumeroCedula" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
                 <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-                <ScalarProperty Name="GeneroID" ColumnName="GeneroID" />
-                <ScalarProperty Name="DistritoID" ColumnName="DistritoID" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="PagoID" ColumnName="PagoID" />
-                <ScalarProperty Name="RutinaClienteID" ColumnName="RutinaClienteID" />
-                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
-                <ScalarProperty Name="WODID" ColumnName="WODID" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="TipoPersonaID" ColumnName="TipoPersonaID" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -841,14 +968,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoPersonas">
-            <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoPersona">
-              <MappingFragment StoreEntitySet="TipoPersona">
-                <ScalarProperty Name="TipoPersonaID" ColumnName="TipoPersonaID" />
-                <ScalarProperty Name="DesTipoPersona" ColumnName="DesTipoPersona" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TipoRutinaAvanzadas">
             <EntityTypeMapping TypeName="CROSSFITBARUKModel.TipoRutinaAvanzada">
               <MappingFragment StoreEntitySet="TipoRutinaAvanzada">
@@ -873,6 +992,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CROSSFITBARUKModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CROSSFITBARUKModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CROSSFITBARUKModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CROSSFITBARUKModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CROSSFITBARUKModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CROSSFITBARUKModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CROSSFITBARUKModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

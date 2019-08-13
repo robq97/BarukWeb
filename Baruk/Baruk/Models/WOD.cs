@@ -17,13 +17,13 @@ namespace Baruk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WOD()
         {
-            this.Personas = new HashSet<Persona>();
+            this.Clientes = new HashSet<Cliente>();
         }
     
         public int WODID { get; set; }
         public string DescWOD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Personas { get; set; }
+        public virtual ICollection<Cliente> Clientes { get; set; }
     }
 }

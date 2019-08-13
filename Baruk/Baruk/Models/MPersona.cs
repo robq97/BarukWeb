@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Baruk.Models
 {
-     class MPersona
+     public class MPersona
     {
         //Get y Set de los atributos
         public int PersonaID { get; set; }
@@ -18,12 +18,14 @@ namespace Baruk.Models
         public string Comentarios{ get; set; }
         public int PagoID { get; set; }
         public int RutinaClienteID { get; set; }
-        public int TipoClienteID { get; set; }
-        public int WodID { get; set; }
+        public Nullable<byte> TipoCliente { get; set; }
+        public Nullable<int> WODID { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public int TipoPersonaID { get; set; }
         public string Email { get; set; }
         public string Contrasena { get; set; }
+
+        //public virtual ICollection<MPersona> Personas { get; set; }
     }
 }

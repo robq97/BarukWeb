@@ -17,7 +17,7 @@ namespace Baruk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pago()
         {
-            this.Personas = new HashSet<Persona>();
+            this.Clientes = new HashSet<Cliente>();
         }
     
         public int PagoID { get; set; }
@@ -29,13 +29,13 @@ namespace Baruk.Models
         public Nullable<byte> MorosidadID { get; set; }
         public byte TipoClinteID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cliente> Clientes { get; set; }
         public virtual Descuento Descuento { get; set; }
         public virtual Morosidad Morosidad { get; set; }
         public virtual TipoCliente TipoCliente { get; set; }
         public virtual TipoMensualidad TipoMensualidad { get; set; }
         public virtual TipoPago TipoPago { get; set; }
         public virtual TipoSuscripcion TipoSuscripcion1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Personas { get; set; }
     }
 }
