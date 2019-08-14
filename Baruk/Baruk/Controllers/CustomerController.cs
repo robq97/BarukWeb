@@ -37,5 +37,21 @@ namespace Baruk.Controllers
         {
             return View();
         }
+
+        // GET: Customer
+        public ActionResult NewInvoice()
+        {
+            return View();
+        }
+
+
+        // GET: Customer
+        public ActionResult ViewInvoice()
+        {
+            return View();
+        }
+
     }
+
+
 }
