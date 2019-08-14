@@ -225,7 +225,6 @@
     <Compile Include="Models\MTipoCliente.cs" />
     <Compile Include="Models\MTipoMensualidad.cs" />
     <Compile Include="Models\MTipoPago.cs" />
-    <Compile Include="Models\MTipoPersona.cs" />
     <Compile Include="Models\MTipoRutinaAvanzada.cs" />
     <Compile Include="Models\MTipoSuscripcion.cs" />
     <Compile Include="Models\MWod.cs" />
