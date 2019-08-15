@@ -45,6 +45,7 @@ namespace Baruk.Controllers
         //        {
         //            Session["UserName"] = user.FirstOrDefault().NumeroCedula;
         //            Session["UserID"] = user.FirstOrDefault().PersonaID;
+        //            Models.Static.PersonaSeccion = user.FirstOrDefault().PersonaID;
         //            return RedirectToAction("NewCustomer", "Customer");
         //        }
         //        else
