@@ -18,6 +18,10 @@ namespace Baruk.Models
         public int TipoClienteID { get; set; }
         public string UsuarioCliente { get; set; }
         public string PasswrdCliente { get; set; }
-        
+    }
+
+    public static class Static
+    {
+        public static int PersonaSeccion;
     }
 }

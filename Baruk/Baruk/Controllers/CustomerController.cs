@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Baruk.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,12 @@ namespace Baruk.Controllers
         // GET: Customer
         public ActionResult MyProfile()
         {
-            return View();
+            var clienteLista = new List<Persona>();
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                clienteLista = db.Personas.ToList();
+            }
+                return View(clienteLista);
         }
 
         // GET: Customer
