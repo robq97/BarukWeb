@@ -3,30 +3,35 @@
         <table class="blue-grey white-text" style=" border-collapse: separate; border-spacing: 5px 5px;">
             <thead>
                 <tr>
-                    <th>Pago</th>
-                    <th>Tip Suscripción</th>
+                    <th>Número de Factura</th>
+                    <th>Tipo Suscripción</th>
                     <th>Fecha Pago</th>
                     <th>Tipo Pago</th>
                     <th>Descuento</th>
                     <th>Tipo Mensualidad</th>
                     <th>Morosidad</th>
-                    <th>Tipo Clinte</th>
+                    <th>Tipo Cliente</th>
                 </tr>
             </thead>
             <tbody>
-                <!--  foreach () { -->
-                <tr>
-                    <td> "[PagoID]"</td>
-                    <td>"[TipoSuscripcion]"</td>
-                    <td>"[FechaPago]"</td>
-                    <td>"[TipoPagoID]"</td>
-                    <td>"[DescuentoID]"</td>
-                    <td>"[TipoMensualidadID]"</td>
-                    <td>"[MorosidadID]"</td>
-                    <td>"[TipoClinteID]"</td>
-                </tr>
-                <!--   } -->
+                @model List<Baruk.Models.Pago>
+                @foreach (var p in Model)
+                {
+                    if (p.PagoID.ToString().Equals(Session["PaymentID"]))
+                    {
+                        <tr>
+                            <td>@p.PagoID</td>
+                            <td> @p.TipoSuscripcion</td>
+                            <td>@p.FechaPago</td>
+                            <td>@p.TipoPagoID</td>
+                            <td>@p.DescuentoID</td>
+                            <td>@p.TipoMensualidadID</td>
+                            <td> @p.MorosidadID</td>
+                            <td>@p.TipoClinteID</td>
+                        </tr> 
+                    }
+                }
+       
             </tbody>
         </table>
     </div>
-</div>

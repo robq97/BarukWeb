@@ -9,6 +9,20 @@ namespace Baruk.Controllers
 {
     public class CustomerController : Controller
     {
+
+        // ver todas las facturas de un cliente
+        public ActionResult ViewInvoice()
+        {
+            var invoiceList = new List<Pago>();
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                invoiceList = db.Pagoes.ToList();
+            }
+            return View(invoiceList);
+        }
+
+
+
         // GET: Customer
         public ActionResult NewCustomer()
         {
@@ -49,14 +63,6 @@ namespace Baruk.Controllers
         {
             return View();
         }
-
-
-        // GET: Customer
-        public ActionResult ViewInvoice()
-        {
-            return View();
-        }
-
     }
 
 
