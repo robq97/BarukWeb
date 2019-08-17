@@ -52,7 +52,8 @@ namespace Baruk.Controllers
                             {
                                 userlist.ClienteID,
                                 userlist.UsuarioCliente,
-                                userlist.TipoClienteID
+                                userlist.TipoClienteID,
+                                userlist.PersonaID
                             }).ToList();
                 if (user.FirstOrDefault() != null)
                 {
@@ -60,6 +61,7 @@ namespace Baruk.Controllers
                     Session["UserName"] = user.FirstOrDefault().UsuarioCliente.ToString();
                     Session["UserID"] = user.FirstOrDefault().ClienteID.ToString();
                     Session["UserType"] = user.FirstOrDefault().TipoClienteID.ToString();
+                    Session["PersonID"] = user.FirstOrDefault().PersonaID.ToString();
 
                     Models.Static.PersonaSeccion = user.FirstOrDefault().ClienteID;
                     return RedirectToAction("MyProfile", "Customer");

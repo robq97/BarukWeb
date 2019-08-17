@@ -2,7 +2,7 @@
 
 @foreach (var p in Model)
 {
-    if (p.PersonaID == Baruk.Models.Static.PersonaSeccion)
+    if (p.PersonaID.ToString().Equals(Session["PersonID"]))
     {
         <div class="row" style="margin-top: 3%;">
             <div class="col s12 m6">
