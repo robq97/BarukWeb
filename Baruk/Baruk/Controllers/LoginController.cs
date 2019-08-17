@@ -8,72 +8,102 @@ using System.Web.Mvc;
 namespace Baruk.Controllers
 {
     public class LoginController : Controller
+
     {
+
         public ActionResult LogIn()
         {
-            if (Session["username"] != null)
+            if (Session["UserType"] != null)
+            {
+                return RedirectToAction("MyProfile", "Customer");
+            }
+            return View();
+        }
+
+        public ActionResult AdminLogIn()
+        {
+            if (Session["UserType"] != null)
             {
                 return RedirectToAction("NewCustomer", "Customer");
             }
             return View();
         }
+
         public ActionResult LogOut()
         {
-            if (Session["username"] != null)
+            if (Session["UserType"] != null)
             {
-                Session["username"] = null;
+                Session["UserType"] = null;
             }
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPost]
-        //public ActionResult Authentication(MPersona login)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
-        //        List<MPersona> personList = db.Personas.ToList();
+        [HttpPost]
+        public ActionResult ClientAuthentication(Cliente login)
+        {
+            if (ModelState.IsValid)
+            {
+                CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+                List<Cliente> clientList = db.Clientes.ToList();
 
-        //        var user = (from userlist in personList
-        //                    where userlist.NumeroCedula == login.NumeroCedula && userlist.Contrasena == login.Contrasena
-        //                    select new
-        //                    {
-        //                        userlist.PersonaID,
-        //                        userlist.NumeroCedula
-        //                    }).ToList();
-        //        if (user.FirstOrDefault() != null)
-        //        {
-        //            Session["UserName"] = user.FirstOrDefault().NumeroCedula;
-        //            Session["UserID"] = user.FirstOrDefault().PersonaID;
-        //            Models.Static.PersonaSeccion = user.FirstOrDefault().PersonaID;
-        //            return RedirectToAction("NewCustomer", "Customer");
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("Denied", "Admin");
-        //        }
+                var user = (from userlist in clientList
+                            where userlist.UsuarioCliente == login.UsuarioCliente && userlist.PasswrdCliente == login.PasswrdCliente
+                            select new
+                            {
+                                userlist.ClienteID,
+                                userlist.UsuarioCliente,
+                                userlist.TipoClienteID
+                            }).ToList();
+                if (user.FirstOrDefault() != null)
+                {
+                    
+                    Session["UserName"] = user.FirstOrDefault().UsuarioCliente.ToString();
+                    Session["UserID"] = user.FirstOrDefault().ClienteID.ToString();
+                    Session["UserType"] = user.FirstOrDefault().TipoClienteID.ToString();
 
-        //    }
-        //    return new EmptyResult();
-        //}
+                    Models.Static.PersonaSeccion = user.FirstOrDefault().ClienteID;
+                    return RedirectToAction("MyProfile", "Customer");
+                }
+                else
+                {
+                    //return RedirectToAction("Denied", "Admin");
+                }
 
-        //public ActionResult Authentication(MPersona login)
-        //{
-        //    using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
-        //    {
-        //        var userDetails = db.Personas.Where(x => x.Cedula == login.NumeroCedula && x.Clientes.Equals(login.Contrasena)).FirstOrDefault();
-        //        if (userDetails == null)
-        //        {
+            }
+            return new EmptyResult();
+        }
 
-        //        }
-        //        else
-        //        {
-        //            Session["userID"] = userDetails.PersonaID;
-        //            return RedirectToAction("MyProfile", "Customer");
-        //        }
+        [HttpPost]
+        public ActionResult AdminAuthentication(Admin login)
+        {
+            if (ModelState.IsValid)
+            {
+                CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+                List<Admin> adminList = db.Admins.ToList();
 
-        //        return new EmptyResult();
-        //    }
-        //}
+                var user = (from userlist in adminList
+                            where userlist.UsuarioEspecial == login.UsuarioEspecial && userlist.PasswrdEspecial == login.PasswrdEspecial
+                            select new
+                            {
+                                userlist.AdminID,
+                                userlist.PersonaID,
+                                userlist.UsuarioEspecial
+                            }).ToList();
+                if (user.FirstOrDefault() != null)
+                {
+
+                    Session["UserName"] = user.FirstOrDefault().UsuarioEspecial;
+                    Session["UserID"] = user.FirstOrDefault().AdminID;
+                    Session["UserType"] = "Admin";
+                    return RedirectToAction("NewCustomer", "Customer");
+                }
+                else
+                {
+                    //return RedirectToAction("Denied", "Admin");
+                }
+
+            }
+            return new EmptyResult();
+        }
     }
 }
