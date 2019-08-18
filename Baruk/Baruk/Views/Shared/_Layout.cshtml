@@ -13,18 +13,40 @@
     <title>Baruk</title>
     <link rel="stylesheet" href="~/Public/css/materialize.css">
     @RenderSection("CSS", required: false)
+
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
 </head>
 <body class="light-green accent-4">
-    @Html.Partial("_NavBar")
-    <div class="container body-content">
-        @RenderBody()
 
-    </div>
-    <hr />
-    @Html.Partial("_Footer")
+    <header>
+        @Html.Partial("_NavBar")
+    </header>
+
+    <main>
+        <div class="container body-content">
+            @RenderBody()
+
+        </div>
+    </main>
+
+    <footer>
+        @Html.Partial("_Footer")
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+
+
     <script src="~/Public/js/materialize.min.js"></script>
     <script>M.AutoInit();</script>
     <script>
