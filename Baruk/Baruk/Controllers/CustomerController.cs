@@ -115,6 +115,43 @@ namespace Baruk.Controllers
             }
 
         }
+
+        public ActionResult ShowInvoices()
+        {
+            CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+            List<Pago> paymentList = db.Pagoes.ToList();
+            MPago modeloPago = new MPago();
+
+            var list = (from c in db.Clientes
+                        join p in db.Pagoes
+                            on c.PagoID equals p.PagoID
+                        join tp in db.TipoPagoes
+                            on p.TipoPagoID equals tp.TipoPagoID
+                        join s in db.TipoSuscripcions
+                            on p.TipoSuscripcion equals s.TipoSuscripcionID
+                        join d in db.Descuentoes
+                            on p.DescuentoID equals d.DescuentoID into ljd
+                        from d in ljd.DefaultIfEmpty()
+                        join tm in db.TipoMensualidads
+                            on p.TipoMensualidadID equals tm.TipoMensualidadID
+                        join m in db.Morosidads
+                            on p.MorosidadID equals m.MorosidadID into ljm
+                        from m in ljm.DefaultIfEmpty()
+                        join tc in db.TipoClientes
+                            on p.TipoClinteID equals tc.TipoClienteID
+                        select new MPago
+                        {
+                            PagoID = p.PagoID,
+                            DescTipoSuscripcion = s.DescDetalle,
+                            FechaPago = p.FechaPago,
+                            DescTipoPago = tp.DescTipoPago,
+                            DescTipoDescuento = d.DesDescuento,
+                            DescTipoMensualidad = tm.DescMensualidad,
+                            DescMorosidad = m.DescMorosidad,
+                            DescTipoCliente = tc.DescTipoCliente
+                        }).ToList();
+            return View(list);
+        }
     }
 }
     

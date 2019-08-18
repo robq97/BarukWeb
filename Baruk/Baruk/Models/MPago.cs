@@ -16,5 +16,13 @@ namespace Baruk.Models
         public int TipoMensualidadID{ get; set; }
         public int MorosidadID { get; set; }
         public int TipoClienteID{ get; set; }
+
+        public string DescTipoSuscripcion { get; set; }
+        public string DescTipoPago { get; set; }
+        public string DescTipoDescuento { get; set; }
+        public string DescTipoMensualidad { get; set; }
+        public string DescMorosidad { get; set; }
+        public string DescTipoCliente { get; set; }
+
     }
 }

@@ -1087,3 +1087,4 @@ C:\Users\tipo-n\Desktop\github\BarukWeb-master\Baruk\Baruk\Baruk\obj\Debug\Baruk
 C:\Users\tipo-n\Desktop\github\BarukWeb-master\Baruk\Baruk\Baruk\obj\Debug\Baruk.csproj.CopyComplete
 C:\Users\tipo-n\Desktop\github\BarukWeb-master\Baruk\Baruk\Baruk\obj\Debug\Baruk.dll
 C:\Users\tipo-n\Desktop\github\BarukWeb-master\Baruk\Baruk\Baruk\obj\Debug\Baruk.pdb
+C:\Users\robq9\Documents\GitHub\BarukWeb\Baruk\Baruk\obj\Debug\Baruk.csprojAssemblyReference.cache
