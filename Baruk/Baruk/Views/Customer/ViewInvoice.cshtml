@@ -1,9 +1,15 @@
-﻿<div class="row">
-    <h2 class="header white-text">Ver Facturas</h2>
+﻿@model IEnumerable<Baruk.Models.MPago>
+
+@if (Model != null)
+{
+    <div class="row">
+        <h2 class="header white-text">Ver Facturas</h2>
         <table class="blue-grey white-text" style=" border-collapse: separate; border-spacing: 5px 5px;">
             <thead>
                 <tr>
                     <th>Número de Factura</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
                     <th>Tipo Suscripción</th>
                     <th>Fecha Pago</th>
                     <th>Tipo Pago</th>
@@ -14,24 +20,46 @@
                 </tr>
             </thead>
             <tbody>
-                @model List<Baruk.Models.Pago>
-                @foreach (var p in Model)
+                @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
                 {
-                    if (p.PagoID.ToString().Equals(Session["PaymentID"]))
+                    foreach (var p in Model)
                     {
                         <tr>
                             <td>@p.PagoID</td>
-                            <td> @p.TipoSuscripcion</td>
+                            <td>@p.Cedula</td>
+                            <td>@p.Nombre</td>
+                            <td>@p.DescTipoSuscripcion</td>
                             <td>@p.FechaPago</td>
-                            <td>@p.TipoPagoID</td>
-                            <td>@p.DescuentoID</td>
-                            <td>@p.TipoMensualidadID</td>
-                            <td> @p.MorosidadID</td>
-                            <td>@p.TipoClinteID</td>
-                        </tr> 
+                            <td>@p.DescTipoPago</td>
+                            <td>@p.DescTipoDescuento</td>
+                            <td>@p.DescTipoMensualidad</td>
+                            <td>@p.DescMorosidad</td>
+                            <td>@p.DescTipoCliente</td>
+                        </tr>
                     }
                 }
-       
+                @if (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2")))
+                {
+                    foreach (var p in Model)
+                    {
+                        if (p.PagoID.ToString().Equals(Session["PaymentID"]))
+                        {
+                        <tr>
+                            <td>@p.PagoID</td>
+                            <td>@p.Cedula</td>
+                            <td>@p.Nombre</td>
+                            <td>@p.DescTipoSuscripcion</td>
+                            <td>@p.FechaPago</td>
+                            <td>@p.DescTipoPago</td>
+                            <td>@p.DescTipoDescuento</td>
+                            <td>@p.DescTipoMensualidad</td>
+                            <td>@p.DescMorosidad</td>
+                            <td>@p.DescTipoCliente</td>
+                        </tr>
+                        }
+                    }
+                }
             </tbody>
         </table>
     </div>
+}

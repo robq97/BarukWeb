@@ -11,15 +11,15 @@ namespace Baruk.Controllers
     {
 
         // ver todas las facturas de un cliente
-        public ActionResult ViewInvoice()
-        {
-            var invoiceList = new List<Pago>();
-            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
-            {
-                invoiceList = db.Pagoes.ToList();
-            }
-            return View(invoiceList);
-        }
+        //public ActionResult ViewInvoice()
+        //{
+        //    var invoiceList = new List<Pago>();
+        //    using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+        //    {
+        //        invoiceList = db.Pagoes.ToList();
+        //    }
+        //    return View(invoiceList);
+        //}
 
 
 
@@ -116,15 +116,15 @@ namespace Baruk.Controllers
 
         }
 
-        public ActionResult ShowInvoices()
+        public ActionResult ViewInvoice()
         {
             CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
             List<Pago> paymentList = db.Pagoes.ToList();
             MPago modeloPago = new MPago();
 
-            var list = (from c in db.Clientes
-                        join p in db.Pagoes
-                            on c.PagoID equals p.PagoID
+            var list = (from p in db.Pagoes
+                        join c in db.Clientes
+                            on p.PagoID equals c.PagoID
                         join tp in db.TipoPagoes
                             on p.TipoPagoID equals tp.TipoPagoID
                         join s in db.TipoSuscripcions
@@ -139,8 +139,12 @@ namespace Baruk.Controllers
                         from m in ljm.DefaultIfEmpty()
                         join tc in db.TipoClientes
                             on p.TipoClinteID equals tc.TipoClienteID
+                        join per in db.Personas
+                            on c.PersonaID equals per.PersonaID
                         select new MPago
                         {
+                            Cedula = per.Cedula,
+                            Nombre = per.Nombre,
                             PagoID = p.PagoID,
                             DescTipoSuscripcion = s.DescDetalle,
                             FechaPago = p.FechaPago,

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Baruk.Models
 {
-     class MPago
+    public class MPago
     {
         //Get y Set de los atributos
         public int PagoID { get; set; }
@@ -23,6 +23,8 @@ namespace Baruk.Models
         public string DescTipoMensualidad { get; set; }
         public string DescMorosidad { get; set; }
         public string DescTipoCliente { get; set; }
+        public int Cedula { get; set; }
+        public string Nombre { get; set; }
 
     }
 }

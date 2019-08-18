@@ -69,7 +69,7 @@ namespace Baruk.Controllers
                 }
                 else
                 {
-                    //return RedirectToAction("Denied", "Admin");
+                    return RedirectToAction("Login", "Login");
                 }
 
             }
@@ -102,7 +102,7 @@ namespace Baruk.Controllers
                 }
                 else
                 {
-                    //return RedirectToAction("Denied", "Admin");
+                    return RedirectToAction("AdminLogin", "Login");
                 }
 
             }
