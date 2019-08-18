@@ -1,117 +1,130 @@
 ﻿@model List<Baruk.Models.Persona>
 
-@foreach (var p in Model)
+@if (Session["UserType"] != null)
 {
-    if (p.PersonaID.ToString().Equals(Session["PersonID"]))
+
+    foreach (var p in Model)
     {
-        <div class="row" style="margin-top: 3%;">
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <table>
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">account_box</i>
-                                </td>
-                                <td><span class="card-title">Nombre</span></td>
-                            </tr>
-                        </table>
+        if (p.PersonaID.ToString().Equals(Session["PersonID"]))
+        {
+            <div class="card blue-grey lighten-1 white-text">
+                <div class="center">
+                    <span class="card-title" style="font-size: 55px">Tipo Membresia</span>
+                </div>
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                            <i class="small material-icons">account_box</i>
+                                        </td>
+                                        <td><span class="card-title">Nombre</span></td>
+                                    </tr>
+                                </table>
 
-                        <p>
-                            @p.Nombre
-                        </p>
+                                <p>
+                                    @p.Nombre
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <table>
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">perm_identity</i>
-                                </td>
-                                <td><span class="card-title">Cédula</span></td>
-                            </tr>
-                        </table>
-                        <p>
-                            @p.Cedula
-                        </p>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                            <i class="small material-icons">perm_identity</i>
+                                        </td>
+                                        <td><span class="card-title">Cédula</span></td>
+                                    </tr>
+                                </table>
+                                <p>
+                                    @p.Cedula
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <table>
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">keyboard_arrow_up</i>
-                                </td>
-                                <td><span class="card-title">Altura</span></td>
-                            </tr>
-                        </table>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                            <i class="small material-icons">keyboard_arrow_up</i>
+                                        </td>
+                                        <td><span class="card-title">Altura</span></td>
+                                    </tr>
+                                </table>
 
-                        <p>
-                            Lorem-impsum
-                        </p>
+                                <p>
+                                    Lorem-impsum
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <table>
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">keyboard_arrow_down</i>
-                                </td>
-                                <td> <span class="card-title">Peso</span></td>
-                            </tr>
-                        </table>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                            <i class="small material-icons">keyboard_arrow_down</i>
+                                        </td>
+                                        <td> <span class="card-title">Peso</span></td>
+                                    </tr>
+                                </table>
 
-                        <p>
-                            Lorem-impsum
-                        </p>
+                                <p>
+                                    Lorem-impsum
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <table>
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">star</i>
-                                </td>
-                                <td> <span class="card-title">Avanzado</span></td>
-                            </tr>
-                        </table>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                            <i class="small material-icons">star</i>
+                                        </td>
+                                        <td> <span class="card-title">Avanzado</span></td>
+                                    </tr>
+                                </table>
 
-                        <p>
-                            Si - No
-                        </p>
+                                <p>
+                                    Si - No
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <table>
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">date_range</i>
-                                </td>
-                                <td><span class="card-title">Fecha de Inicio</span></td>
-                            </tr>
-                        </table>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                            <i class="small material-icons">date_range</i>
+                                        </td>
+                                        <td><span class="card-title">Fecha de Inicio</span></td>
+                                    </tr>
+                                </table>
 
-                        <p>
-                            @p.FechaInicio
-                        </p>
+                                <p>
+                                    @p.FechaInicio
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     }
+}
+@if (Session["UserType"] == null | (Session["UserType"] != null && !(Session["UserType"].Equals("1") | Session["UserType"].Equals("2")))) 
+{
+    Response.Redirect("~/Information/_Denied");
 }

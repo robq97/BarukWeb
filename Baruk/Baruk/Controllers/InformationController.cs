@@ -31,5 +31,10 @@ namespace Baruk.Controllers
         {
             return View();
         }
+
+        public ActionResult _Denied()
+        {
+            return View();
+        }
     }
 }
