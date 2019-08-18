@@ -59,15 +59,26 @@ namespace Baruk.Controllers
         }
 
         // GET: Customer
-        public ActionResult NewInvoice(/*Pago pago*/)
+        public ActionResult NewInvoice(Pago pago)
         {
 
             using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
             {
                 List<TipoSuscripcion> suscripciones =db.TipoSuscripcions.ToList();
                 ViewBag.TipoSuscripcion = new SelectList(suscripciones, "TipoSuscripcionID", "DescDetalle");
-                //db.Pagoes.Add(pago);
-                //db.SaveChanges();
+
+                Pago elPago = new Pago();
+                elPago.TipoSuscripcion = pago.TipoSuscripcion;
+                elPago.FechaPago = pago.FechaPago;
+                elPago.DescuentoID = pago.DescuentoID;
+                elPago.TipoMensualidadID = pago.TipoMensualidadID;
+                elPago.TipoClinteID = pago.TipoClinteID;
+                elPago.TipoPagoID = pago.TipoPagoID;
+                elPago.MorosidadID = pago.MorosidadID;
+
+                db.Pagoes.Add(elPago);
+                db.SaveChanges();
+
             }
 
             return View();

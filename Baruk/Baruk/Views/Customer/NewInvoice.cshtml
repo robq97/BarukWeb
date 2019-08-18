@@ -8,16 +8,7 @@
         <h6 class="grey-text">Tipo Suscripción</h6>
         @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "")
         @Html.ValidationMessageFor(model => model.TipoSuscripcion, "", new { @class = "validate white-text" })
-        @*<div class="input-field col s12">
-                <select required id="TipoSuscripcion" name="TipoSuscripcion">
-                    <option  value="" disabled selected>Tipo Suscripción</option>
-                    <option value="1">Mensual </option>
-                    <option value="2">Trimestral</option>
-                    <option value="3">Anual </option>
-                </select>
-                <label>Tipo Suscripción</label>
-            </div>*@
-
+       
         <div class="input-field col s12">
                 <label>Fecha Pago</label>
                 <input id="FechaPago" name="FechaPago" type="text" class="datepicker" required>
