@@ -63,9 +63,8 @@ namespace Baruk.Controllers
                     Session["UserID"] = user.FirstOrDefault().ClienteID.ToString();
                     Session["UserType"] = user.FirstOrDefault().TipoClienteID.ToString();
                     Session["PersonID"] = user.FirstOrDefault().PersonaID.ToString();
+                    Session["ClienteID"] = user.FirstOrDefault().ClienteID.ToString();
                     Session["PaymentID"] = user.FirstOrDefault().PagoID.ToString();
-
-                    Models.Static.PersonaSeccion = user.FirstOrDefault().ClienteID;
                     return RedirectToAction("MyProfile", "Customer");
                 }
                 else
