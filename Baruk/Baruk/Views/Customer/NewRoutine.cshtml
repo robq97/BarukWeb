@@ -1,71 +1,80 @@
-﻿<div class="row">
-    <h2 class="header white-text">Nueva Rutina</h2>
-    <form class=" card col s12 grey darken-3" style="margin-top: 2%;">
-        <div class="row">
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons">person</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <input id="instructor" type="text" class="validate" required>
-                            <label for="instructor">Instructor</label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons">library_books</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <input id="ID" type="text" class="validate" required>
-                            <label for="ID">Cédula</label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons">date_range</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <input id="date" type="text" class="datepicker" required>
-                            <label for="date">Fecha de Vencimiento</label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons">directions_run</i>
-                    </td>
-                    <td>
+﻿@if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
+{
+    <div class="row">
+        <form class=" card col s12 blue-grey darken-1" style="margin-top: 2%;">
+            <div class="center">
+                <span class="card-title white-text" style="font-size: 55px">Nueva Rutina</span>
+            </div>
+            <div class="row">
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons">person</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <input id="instructor" type="text" class="validate white-text" required>
+                                <label for="instructor"><span class="grey-text text-lighten-2">Instructor</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons">library_books</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <input id="ID" type="text" class="validate white-text" required>
+                                <label for="ID"><span class="grey-text text-lighten-2">Cédula</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons">date_range</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <input id="date" type="text" class="datepicker white-text" required>
+                                <label for="date"><span class="grey-text text-lighten-2">Fecha de Vencimiento</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons">directions_run</i>
+                        </td>
+                        <td>
 
-                        <div class="input-field col s12">
-                            <input id="Desc" type="text" class="validate" required>
-                            <label for="Desc">Descripción</label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                            <div class="input-field col s12">
+                                <input id="Desc" type="text" class="validate white-text" required>
+                                <label for="Desc"><span class="grey-text text-lighten-2">Descripción</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
 
-            
-            
-            
-        </div>
-        <div class="row center">
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-                Agregar
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-    </form>
-</div>
+
+
+
+            </div>
+            <div class="row center">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Agregar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+}
+@if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
+{
+    Response.Redirect("~/Information/_Denied");
+}
