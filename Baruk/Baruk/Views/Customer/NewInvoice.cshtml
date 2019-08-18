@@ -5,66 +5,54 @@
     @using (Html.BeginForm("NewInvoice", "Customer", FormMethod.Post, new { @class = " card col s12 grey darken-3", @style = "margin-top: 2%;" }))
     {
         <br />
-        <h6 class="grey-text">Tipo Suscripción</h6>
-        @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "")
-        @Html.ValidationMessageFor(model => model.TipoSuscripcion, "", new { @class = "validate white-text" })
-       
         <div class="input-field col s12">
-                <label>Fecha Pago</label>
-                <input id="FechaPago" name="FechaPago" type="text" class="datepicker" required>
-            </div>
+            <h6 class="grey-text">Tipo Suscripción</h6>
+            @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "")
+            @Html.ValidationMessageFor(model => model.TipoSuscripcion, "", new { @class = "validate white-text" })
+        </div>
 
-            <div class="input-field col s12">
-                <select required id="TipoPago" name="TipoPago">
-                    <option value="" disabled selected>Tipo Pago</option>
-                    <option value="1">Efectivo</option>
-                    <option value="2">Tarjeta</option>
-                    <option value="3">Transacción</option>
-                </select>
-                <label>Tipo Pago</label>
-            </div>
 
-            <div class="input-field col s12">
-                <select id="Descuento" name="Descuento">
-                    <option value="" disabled selected>Descuento</option>
-                    <option value="1">Si</option>
-                    <option value="2">No</option>
-                </select>
-                <label>Descuento</label>
-            </div>
+        <div class="input-field col s12">
+            <h6 class="grey-text">Fecha Pago</h6>
+            @Html.TextBoxFor(model => model.FechaPago, new { @class = "datepicker white-text", @type = "text" })
+            @Html.ValidationMessageFor(model => model.FechaPago, "", new { @class = "validate white-text" })
+        </div>
 
-            <div class="input-field col s12" required>
-                <select id="TipoMensualidad" name="TipoMensualidad">
-                    <option value="" disabled selected>Tipo Mensualidad</option>
-                    <option value="1">3 Días a la Semana</option>
-                    <option value="2">Ilimitada</option>
-                </select>
-                <label>Tipo Mensualidad</label>
-            </div>
+        <div class="input-field col s12">
+            <h6 class="grey-text">Tipo de Pago</h6>
+            @Html.DropDownListFor(model => model.TipoPagoID, ViewBag.TipoPago as SelectList, "")
+            @Html.ValidationMessageFor(model => model.TipoPagoID, "", new { @class = "validate white-text" })
+        </div>
 
-            <div class="input-field col s12">
-                <select id="Morosidad" name="Morosidad">
-                    <option value="" disabled selected>Morosidad</option>
-                    <option value="1">Si</option>
-                    <option value="2">No</option>
-                </select>
-                <label>Morosidad</label>
-            </div>
+        <div class="input-field col s12">
+            <h6 class="grey-text">Descuento</h6>
+            @Html.DropDownListFor(model => model.DescuentoID, ViewBag.Descuentos as SelectList, "")
+            @Html.ValidationMessageFor(model => model.DescuentoID, "", new { @class = "validate white-text" })
+        </div>
 
-            <div class="input-field col s12" required>
-                <select id="TipoCliente" name="TipoCliente">
-                    <option value="" disabled selected>Tipo Clinte</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Avanzado">Avanzado</option>
-                </select>
-                <label>Tipo Clinte</label>
-            </div>
+        <div class="input-field col s12" required>
+            <h6 class="grey-text">Tipo de Mensualidad</h6>
+            @Html.DropDownListFor(model => model.TipoMensualidadID, ViewBag.TipoMensualidad as SelectList, "")
+            @Html.ValidationMessageFor(model => model.TipoMensualidadID, "", new { @class = "validate white-text" })
+        </div>
 
-            <div class="row center">
-                <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Crear Factura
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
+        <div class="input-field col s12">
+            <h6 class="grey-text">Presenta Morosidad</h6>
+            @Html.DropDownListFor(model => model.MorosidadID, ViewBag.Morosidad as SelectList, "")
+            @Html.ValidationMessageFor(model => model.MorosidadID, "", new { @class = "validate white-text" })
+        </div>
+
+        <div class="input-field col s12" required>
+            <h6 class="grey-text">Tipo de Cliente</h6>
+            @Html.DropDownListFor(model => model.TipoClinteID, ViewBag.Tclientes as SelectList, "")
+            @Html.ValidationMessageFor(model => model.TipoClinteID, "", new { @class = "validate white-text" })
+        </div>
+
+        <div class="row center">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Crear Factura
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     }
 </div>

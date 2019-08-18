@@ -59,13 +59,44 @@ namespace Baruk.Controllers
         }
 
         // GET: Customer
-        public ActionResult NewInvoice(Pago pago)
+        public ActionResult NewInvoice()
         {
-
             using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
             {
-                List<TipoSuscripcion> suscripciones =db.TipoSuscripcions.ToList();
+                List<TipoSuscripcion> suscripciones = db.TipoSuscripcions.ToList();
                 ViewBag.TipoSuscripcion = new SelectList(suscripciones, "TipoSuscripcionID", "DescDetalle");
+                List<Descuento> descuentos = db.Descuentoes.ToList();
+                ViewBag.Descuentos = new SelectList(descuentos, "DescuentoID", "DesDescuento");
+                List<TipoPago> pagos = db.TipoPagoes.ToList();
+                ViewBag.TipoPago = new SelectList(pagos, "TipoPagoID", "DescTipoPago");
+                List<TipoMensualidad> mensualidad = db.TipoMensualidads.ToList();
+                ViewBag.TipoMensualidad = new SelectList(mensualidad, "TipoMensualidadID", "DescMensualidad");
+                List<TipoCliente> Tcliente = db.TipoClientes.ToList();
+                ViewBag.Tclientes = new SelectList(Tcliente, "TipoClienteID", "DescTipoCliente");
+                List<Morosidad> morosidad = db.Morosidads.ToList();
+                ViewBag.Morosidad = new SelectList(morosidad, "MorosidadID", "DescMorosidad");
+                return View();
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult NewInvoice(Pago pago)
+        {
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                List<TipoSuscripcion> suscripciones = db.TipoSuscripcions.ToList();
+                ViewBag.TipoSuscripcion = new SelectList(suscripciones, "TipoSuscripcionID", "DescDetalle");
+                List<Descuento> descuentos = db.Descuentoes.ToList();
+                ViewBag.Descuentos = new SelectList(descuentos, "DescuentoID", "DesDescuento");
+                List<TipoPago> pagos = db.TipoPagoes.ToList();
+                ViewBag.TipoPago = new SelectList(pagos, "TipoPagoID", "DescTipoPago");
+                List<TipoMensualidad> mensualidad = db.TipoMensualidads.ToList();
+                ViewBag.TipoMensualidad = new SelectList(mensualidad, "TipoMensualidadID", "DescMensualidad");
+                List<TipoCliente> Tcliente = db.TipoClientes.ToList();
+                ViewBag.Tclientes = new SelectList(Tcliente, "TipoClienteID", "DescTipoCliente");
+                List<Morosidad> morosidad = db.Morosidads.ToList();
+                ViewBag.Morosidad = new SelectList(morosidad, "MorosidadID", "DescMorosidad");
 
                 Pago elPago = new Pago();
                 elPago.TipoSuscripcion = pago.TipoSuscripcion;
@@ -79,12 +110,11 @@ namespace Baruk.Controllers
                 db.Pagoes.Add(elPago);
                 db.SaveChanges();
 
+                return View(pago);
+
             }
 
-            return View();
-
         }
-        //ViewBag.suscripciones = suscripciones;
     }
 }
     
