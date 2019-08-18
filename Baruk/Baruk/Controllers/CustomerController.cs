@@ -81,7 +81,7 @@ namespace Baruk.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewInvoice(Pago pago)
+        public ActionResult NewInvoice(Pago pago, Persona persona)
         {
             using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
             {
@@ -99,6 +99,7 @@ namespace Baruk.Controllers
                 ViewBag.Morosidad = new SelectList(morosidad, "MorosidadID", "DescMorosidad");
 
                 Pago elPago = new Pago();
+                var pagoID = elPago.PagoID;
                 elPago.TipoSuscripcion = pago.TipoSuscripcion;
                 elPago.FechaPago = pago.FechaPago;
                 elPago.DescuentoID = pago.DescuentoID;
@@ -108,13 +109,25 @@ namespace Baruk.Controllers
                 elPago.MorosidadID = pago.MorosidadID;
 
                 db.Pagoes.Add(elPago);
+
+
+                List<Persona> personas = db.Personas.ToList();
+                List<Cliente> cliente = db.Clientes.ToList();
+                foreach (var x in personas)
+                {
+                    if (x.Cedula == persona.Cedula)
+                    {
+                        var cambioPago = db.Clientes.Where(j => j.PersonaID == x.PersonaID).FirstOrDefault();
+                        cambioPago.PagoID = pagoID;
+
+                    }
+                }
                 db.SaveChanges();
-
                 return View(pago);
-
             }
 
         }
+
 
         public ActionResult ViewInvoice()
         {
