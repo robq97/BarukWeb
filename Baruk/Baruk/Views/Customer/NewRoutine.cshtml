@@ -4,75 +4,78 @@
 {
 <div class="container body-content">
     <div class="row">
-        <form class=" card col s12 blue-grey darken-1 z-depth-3" style="margin-top: 2%;">
-            <div class="center">
-                <span class="card-title white-text" style="font-size: 55px">Nuevo Entrenamiento Funcional</span>
-            </div>
-            <div class="row">
-                <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                    <tr>
-                        <td width="25px">
-                            <i class="small material-icons white-text">person</i>
-                        </td>
-                        <td>
-                            <div class="input-field col s12">
-                                <h6 class="grey-text text-lighten-2">Instructor</h6>
-                                <input id="Instructor" name="Instructor" type="text" class="validate white-text" required>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                    <tr>
-                        <td width="25px">
-                            <i class="small material-icons white-text">library_books</i>
-                        </td>
-                        <td>
-                            <div class="input-field col s12">
-                                <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
-                                <input id="cedula" name="cedula" type="text" class="validate" style="color:white;" required />
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                    <tr>
-                        <td width="25px">
-                            <i class="small material-icons white-text">date_range</i>
-                        </td>
-                        <td>
-                            <div class="input-field col s12">
-                                <h6 class="grey-text text-lighten-2">Fecha Pago</h6>
-                                @Html.DropDownListFor(model => model.TipoRutinaID, ViewBag.TipoRutinaID as SelectList, "", new { required = "required" })
-                                @Html.ValidationMessageFor(model => model.TipoRutinaID, "", new { @class = "validate white-text" })
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                    <tr>
-                        <td width="25px">
-                            <i class="small material-icons white-text">directions_run</i>
-                        </td>
-                        <td>
+        @using (Html.BeginForm("NewRoutine", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1 z-depth-3", @style = "margin-top: 2%;" }))
+        {
+            <form class=" card col s12 blue-grey darken-1 z-depth-3" style="margin-top: 2%;">
+                <div class="center">
+                    <span class="card-title white-text" style="font-size: 55px">Nuevo Entrenamiento Funcional</span>
+                </div>
+                <div class="row">
+                    <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                        <tr>
+                            <td width="25px">
+                                <i class="small material-icons white-text">person</i>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <h6 class="grey-text text-lighten-2">Instructor</h6>
+                                    <input id="Instructor" name="Instructor" type="text" class="validate white-text" required>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                        <tr>
+                            <td width="25px">
+                                <i class="small material-icons white-text">library_books</i>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
+                                    <input id="cedula" name="cedula" type="text" class="validate" style="color:white;" required />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                        <tr>
+                            <td width="25px">
+                                <i class="small material-icons white-text">date_range</i>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <h6 class="grey-text text-lighten-2">Tipo de Entrenamiento</h6>
+                                    @Html.DropDownListFor(model => model.TipoRutinaID, ViewBag.TipoRutinaID as SelectList, "", new { required = "required" })
+                                    @Html.ValidationMessageFor(model => model.TipoRutinaID, "", new { @class = "validate white-text" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                        <tr>
+                            <td width="25px">
+                                <i class="small material-icons white-text">directions_run</i>
+                            </td>
+                            <td>
 
-                            <div class="input-field col s12">
-                                <h6 class="grey-text text-lighten-2">Work out of day</h6>
-                                @Html.TextBoxFor(model => model.DescRutina, new { @class = "validate white-text", @type = "text", required = "required" })
-                                @Html.ValidationMessageFor(model => model.DescRutina, "", new { @class = "validate white-text" })
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="row center">
-                <button class="btn waves-effect waves-light light-green accent-4" type="submit" name="action">
-                    Agregar
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        </form>
-    </div>
+                                <div class="input-field col s12">
+                                    <h6 class="grey-text text-lighten-2">WOD</h6>
+                                    @Html.TextBoxFor(model => model.DescRutina, new { @class = "validate white-text", @type = "text", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.DescRutina, "", new { @class = "validate white-text" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row center">
+                    <button class="btn waves-effect waves-light light-green accent-4" type="submit" name="action">
+                        Agregar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        }
+        </div>
 </div>
         }
         @if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))

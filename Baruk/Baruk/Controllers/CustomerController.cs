@@ -104,7 +104,7 @@ namespace Baruk.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewRoutine(RutinasClientesAvanzado rutina, Persona person)
+        public ActionResult NewRoutine(RutinasClientesAvanzado rutina, Persona person, string Instructor)
         {
             using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
             {
@@ -113,7 +113,8 @@ namespace Baruk.Controllers
                 RutinasClientesAvanzado laRutina = new RutinasClientesAvanzado();
                 var rutinaID = laRutina.RutinaClienteID; 
                 laRutina.TipoRutinaID = rutina.TipoRutinaID;
-                laRutina.DescRutina = /*"El Instructor asignado es: "+ person.Nombre +"\n El Wod Aignado es: \n" +*/ rutina.DescRutina;
+                //var DescripcionRutina = "El Instructor asignado es: " + Instructor + "\n El Wod Aignado es: \n" + rutina.DescRutina;
+                laRutina.DescRutina = rutina.DescRutina;
                 db.RutinasClientesAvanzados.Add(laRutina);
 
                 List<Persona> personas = db.Personas.ToList();
