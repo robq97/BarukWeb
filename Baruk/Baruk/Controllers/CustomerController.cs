@@ -98,7 +98,19 @@ namespace Baruk.Controllers
         // GET: Customer
         public ActionResult AvailableRoutines()
         {
-            return View();
+            CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+            List<RutinasClientesAvanzado> routineList = db.RutinasClientesAvanzados.ToList();
+            MRutinasClientesAvanzados routinesModel = new MRutinasClientesAvanzados();
+
+            var list = (from tra in db.TipoRutinaAvanzadas
+                        join ra in db.RutinasClientesAvanzados
+                            on tra.TipoRutinaID equals ra.TipoRutinaID
+                        select new MRutinasClientesAvanzados
+                        {
+                            DescTipoRutinaID = tra.DescRutina,
+                            DescRutina = ra.DescRutina
+                        }).ToList();
+            return View(list);
         }
 
         // GET: Customer
