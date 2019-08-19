@@ -1,5 +1,6 @@
 ﻿@if (Session["UserType"] != null)
 {
+<div class="container body-content">
     <table class="card white-text center" style="margin-bottom:3%; margin-top:5%">
         <thead>
             <tr class="teal darken-1">
@@ -105,8 +106,9 @@
             </tr>
         </tbody>
     </table>
-}
-@if (Session["UserType"] == null)
-{
-    Response.Redirect("~/Information/_Denied");
-}
+</div>
+        }
+        @if (Session["UserType"] == null)
+        {
+            Response.Redirect("~/Information/_Denied");
+        }
