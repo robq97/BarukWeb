@@ -102,17 +102,3 @@
             <li>@Html.ActionLink("Salir", "LogOut", "Login")</li>
         </ul>
     }
-        <script type="text/javascript">
-    $(document).ready(function(){
-        $('ul.right li').on('click', function(){
-            var clicked = $(this);
-            $('ul.right li').each(function(){
-                if($(this).hasClass('active')){
-                    $(this).removeClass('active');
-                }
-            });
-            $(this).addClass('active');
-        });
-    });
-        </script>
-

@@ -4,7 +4,7 @@
 {
     if (Model != null)
     {
-        <div class="row" style="margin-top: 5%">
+        <div class="row"  style="margin-top: 5%">
             <div class="card card blue-grey darken-3 white-text">
                 <div class="center">
                     <span class="card-title" style="font-size: 55px">Facturas</span>
@@ -27,8 +27,16 @@
                     <tbody>
                         @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
                         {
-                            foreach (var p in Model)
+                            @*using (Html.BeginForm("SearchInvoice", "Customer", FormMethod.Post, new { @class = "input - field col s6" }))
                             {
+                                <i class="material-icons prefix">search</i>
+                                <input name="cedula" id="icon_prefix" type="text" class="validate">
+                                <label for="icon_prefix">Ingrese una cédula</label>
+                            }*@
+                        foreach (var p in Model)
+                        {
+                            //if (p.Cedula.ToString().Equals(Session["Search"]))
+                            //{
                                 <tr class="hoverable">
                                     <td>@p.PagoID</td>
                                     <td>@p.Cedula</td>
@@ -41,7 +49,8 @@
                                     <td>@p.DescMorosidad</td>
                                     <td>@p.DescTipoCliente</td>
                                 </tr>
-                            }
+                            //}
+                        }
                         }
                         @if (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2")))
                         {

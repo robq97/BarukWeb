@@ -169,6 +169,14 @@ namespace Baruk.Controllers
                         }).ToList();
             return View(list);
         }
+
+        //[HttpPost]
+        //public ActionResult SearchInvoice(string cedula)
+        //{
+        //    Session["Search"] = cedula;
+        //    return new EmptyResult();
+        //}
+        
     }
 }
     
