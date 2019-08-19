@@ -25,8 +25,48 @@ namespace Baruk.Controllers
 
         // GET: Customer
         public ActionResult NewCustomer()
+
         {
-            return View();
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+
+                List<Genero> Gen = db.Generoes.ToList();
+                ViewBag.Genero = new SelectList(Gen, "GeneroID", "DescGenero");
+                return View();
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult NewCustomer(Persona person, Cliente clientes)
+        {
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                List<Genero> Gen = db.Generoes.ToList();
+                ViewBag.Genero = new SelectList(Gen, "GeneroID", "DescGenero");
+
+                Persona persona = new Persona();
+                var personaID = persona.PersonaID;
+                persona.Cedula = person.Cedula;
+                persona.Nombre = person.Nombre;
+                persona.PrimerApellido = person.PrimerApellido;
+                persona.SegundoApellido = person.SegundoApellido;
+                persona.GeneroID = person.GeneroID;
+                persona.FechaInicio = person.FechaInicio;
+                persona.Email = person.Email;
+
+                db.Personas.Add(persona);
+
+
+                Cliente customer = new Cliente();
+                customer.PersonaID = personaID;
+                customer.UsuarioCliente = clientes.UsuarioCliente;
+                customer.PasswrdCliente = clientes.PasswrdCliente;
+                db.Clientes.Add(customer);
+
+                db.SaveChanges();
+                return View(person);
+            }
         }
 
         // GET: Customer
