@@ -1,138 +1,141 @@
 ﻿@model Baruk.Models.Pago
+<!--Se llama al modelo pago-->
 
 @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
-<div class="container body-content">
-    <div class="row">
-        @using (Html.BeginForm("NewInvoice", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1 z-depth-3", @style = "margin-top: 2%;" }))
-        {
-            <br />
-            <div class="center">
-                <span class="card-title white-text" style="font-size: 55px">Nueva Factura</span>
-            </div>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">person</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
-                            <input id="cedula" name="cedula" type="text" class="validate" style="color:white;" required>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+    <div class="container body-content">
+        <div class="row">
+            <!--Envia los datos de la vista al controlador debido-->
+            @using (Html.BeginForm("NewInvoice", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1 z-depth-3", @style = "margin-top: 2%;" }))
+            {
+                <br />
+                <div class="center">
+                    <!--Se centra-->
+                    <span class="card-title white-text" style="font-size: 55px">Nueva Factura</span><!--Se pone el titulo y el color del texto-->
+                </div>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">person</i><!--Iconos de matirialize-->
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6><!--Se le da el color y el titulo a las carta-->
+                                <input id="cedula" name="cedula" type="text" class="validate" style="color:white;" required><!--Se le pone el name-->
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">verified_user</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <h6 class="grey-text text-lighten-2">Tipo de Suscripción</h6>
-                            @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "", new { required = "required" })
-                            @Html.ValidationMessageFor(model => model.TipoSuscripcion, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">date_range</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <h6 class="grey-text text-lighten-2">Fecha Pago</h6>
-                            @Html.TextBoxFor(model => model.FechaPago, new { @class = "datepicker white-text", @type = "text", required = "required" })
-                            @Html.ValidationMessageFor(model => model.FechaPago, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">payment</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <h6 class="grey-text text-lighten-2">Tipo de Pago</h6>
-                            @Html.DropDownListFor(model => model.TipoPagoID, ViewBag.TipoPago as SelectList, "", new { required = "required" })
-                            @Html.ValidationMessageFor(model => model.TipoPagoID, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">local_offer</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <h6 class="grey-text text-lighten-2">Descuento</h6>
-                            @Html.DropDownListFor(model => model.DescuentoID, ViewBag.Descuentos as SelectList, "")
-                            @Html.ValidationMessageFor(model => model.DescuentoID, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">assignment</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12" required>
-                            <h6 class="grey-text text-lighten-2">Tipo de Mensualidad</h6>
-                            @Html.DropDownListFor(model => model.TipoMensualidadID, ViewBag.TipoMensualidad as SelectList, "", new { required = "required" })
-                            @Html.ValidationMessageFor(model => model.TipoMensualidadID, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">assistant_photo</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <h6 class="grey-text text-lighten-2">Presenta Morosidad</h6>
-                            @Html.DropDownListFor(model => model.MorosidadID, ViewBag.Morosidad as SelectList, "")
-                            @Html.ValidationMessageFor(model => model.MorosidadID, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                <tr>
-                    <td width="25px">
-                        <i class="small material-icons white-text">star</i>
-                    </td>
-                    <td>
-                        <div class="input-field col s12" required>
-                            <h6 class="grey-text text-lighten-2">Tipo de Cliente</h6>
-                            @Html.DropDownListFor(model => model.TipoClinteID, ViewBag.Tclientes as SelectList, "", new { required = "required" })
-                            @Html.ValidationMessageFor(model => model.TipoClinteID, "", new { @class = "validate white-text" })
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div class="row center">
-                <button class="btn waves-effect waves-light light-green accent-4" type="submit" name="action">
-                    Crear Factura
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        }
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">verified_user</i><!--Icono matirialize-->
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <h6 class="grey-text text-lighten-2">Tipo de Suscripción</h6>
+                                @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "", new { required = "required" })
+                                @Html.ValidationMessageFor(model => model.TipoSuscripcion, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">date_range</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <h6 class="grey-text text-lighten-2">Fecha Pago</h6>
+                                @Html.TextBoxFor(model => model.FechaPago, new { @class = "datepicker white-text", @type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.FechaPago, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">payment</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <h6 class="grey-text text-lighten-2">Tipo de Pago</h6>
+                                @Html.DropDownListFor(model => model.TipoPagoID, ViewBag.TipoPago as SelectList, "", new { required = "required" })
+                                @Html.ValidationMessageFor(model => model.TipoPagoID, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">local_offer</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <h6 class="grey-text text-lighten-2">Descuento</h6>
+                                @Html.DropDownListFor(model => model.DescuentoID, ViewBag.Descuentos as SelectList, "")
+                                @Html.ValidationMessageFor(model => model.DescuentoID, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">assignment</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12" required>
+                                <h6 class="grey-text text-lighten-2">Tipo de Mensualidad</h6>
+                                @Html.DropDownListFor(model => model.TipoMensualidadID, ViewBag.TipoMensualidad as SelectList, "", new { required = "required" })
+                                @Html.ValidationMessageFor(model => model.TipoMensualidadID, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">assistant_photo</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <h6 class="grey-text text-lighten-2">Presenta Morosidad</h6>
+                                @Html.DropDownListFor(model => model.MorosidadID, ViewBag.Morosidad as SelectList, "")
+                                @Html.ValidationMessageFor(model => model.MorosidadID, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                    <tr>
+                        <td width="25px">
+                            <i class="small material-icons white-text">star</i>
+                        </td>
+                        <td>
+                            <div class="input-field col s12" required>
+                                <h6 class="grey-text text-lighten-2">Tipo de Cliente</h6>
+                                @Html.DropDownListFor(model => model.TipoClinteID, ViewBag.Tclientes as SelectList, "", new { required = "required" })
+                                @Html.ValidationMessageFor(model => model.TipoClinteID, "", new { @class = "validate white-text" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="row center">
+                    <button class="btn waves-effect waves-light light-green accent-4" type="submit" name="action">
+                        Crear Factura
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            }
+        </div>
     </div>
-</div>
-        }
-        @if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
-        {
-            Response.Redirect("~/Information/_Denied");
-        }
+}
+@if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
+{
+    Response.Redirect("~/Information/_Denied");
+}

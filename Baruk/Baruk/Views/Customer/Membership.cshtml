@@ -2,38 +2,47 @@
 {
 
     <div class="body-content">
+        <!-- Clase que contiene todo lo de la ventana-->
         <div class="col center ">
-            @using (Html.BeginForm("Membership", "Customer", FormMethod.Post))
+            @using (Html.BeginForm("Membership", "Customer", FormMethod.Post)) // Aca envia las variables de la vista al controlador correspondiente
             {
-                <div class="col s6 m6 center " style="padding-left:25%; padding-right:25%; margin-top:10%; margin-bottom:10%;">
+                <div class="col s6 m6 center" style="padding-left:25%; padding-right:25%; margin-top:10%; margin-bottom:10%;">
                     <div class="card small blue-grey darken-1 center z-depth-3">
+                        <!--Crea una visualizacion de carta pequeña con el color y centrada-->
                         <div class="card-content white-text">
+                            <!--Coloca contenido de la carta-->
                             <div class="center">
-                                <span class="card-title" style="font-size: 35px">Tipo de Membresía</span>
+                                <!--Coloca contenido en el centro-->
+                                <span class="card-title" style="font-size: 35px">Tipo de Membresía</span><!--Titulo para ver en que vista se esta ubicado-->
                             </div>
                             <p>
                                 <div class="row">
+                                    <!--Dividen la pantalla de html en columnas-->
 
                                     <div class="input-field col s12">
-                                        <i class="small material-icons prefix">perm_identity</i>
+                                        <i class="small material-icons prefix">perm_identity</i><!--Clase especial de materialize para extraer iconos-->
+                                        <!--Se crea area o espacio para colocar la cedula-->
                                         <input value="" id="ID" name="cedula" type="text" class="validate white-text" required>
                                         <label class="active" for="ID"><span class="grey-text text-lighten-2">Cédula</span></label>
+                                        <!--Tipo descripcion para ver lo que contiene el input-->
                                     </div>
 
                                 </div>
                                 <div class="switch">
+                                    <!--Se crea el switch-->
                                     <label>
-                                        <span class="grey-text text-lighten-2">Regular</span>
-                                        <input type="checkbox" name="Box">
-                                        <span class="lever"></span>
-                                        <span class="grey-text text-lighten-2">Avanzado</span>
+                                        <span class="grey-text text-lighten-2">Regular</span><!--Texto de la opcion-->
+                                        <input type="checkbox" name="Box"><!--Tipo de checkbox y además se guarda el nombre de la variable-->
+                                        <span class="lever"></span><!--Define el tipo de switch-->
+                                        <span class="grey-text text-lighten-2">Avanzado</span><!--Texto de la opcion-->
                                     </label>
                                 </div>
                             </p>
                             <div class="row center">
+                                <!--Coloca las columnas en el centro-->
                                 <button class="btn waves-effect waves-light light-green accent-4" style="margin-top :7%" type="submit" name="action">
                                     Realizar Cambios
-                                    <i class="material-icons right">send</i>
+                                    <i class="material-icons right">send</i><!--Se define los iconos a usar-->
                                 </button>
                             </div>
                         </div>

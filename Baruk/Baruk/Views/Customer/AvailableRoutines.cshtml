@@ -2,28 +2,33 @@
     @if (Session["UserType"] != null)
     {
         <div class="col center ">
+            <!--Se centran las columnas-->
             <div class="col s6 m6 center " style="padding-left:25%; padding-right:25%; margin-top:10%; margin-bottom:10%;">
                 <div class="card small blue-grey darken-1 center">
-                    <!--  -->
+                    <!--Se le da caracteristicas a la targeta -->
                     <div style="background:#546E7A; color:white;">
-                        <span class="card-title">Rutinas Disponibles</span>
+                        <!--Se le pone el color del fondo a las pag-->
+                        <span class="card-title">Rutinas Disponibles</span><!--Se muestra el titulo-->
                         <table style="  border-collapse: separate; border-spacing: 10px 5px;">
                             <tr>
                                 <td><i class="medium material-icons white-text">accessibility</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rutina Cliente:</td>
+                                <!--Se pone el icono desde matirialize y lo celeste de las letras son espacios -->
                             </tr>
                             <tr>
                                 <td></td>
-                                <td align="right">x</td>
+                                <td align="right">x</td><!--Se alinea a las derecha-->
                             </tr>
                             <tr>
                                 <td><i class="medium material-icons white-text">rowing</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tipo Rutina:</td>
+                                <!--Se pone el icono desde matirialize y lo celeste de las letras son espacios -->
                             </tr>
                             <tr>
                                 <td></td>
-                                <td align="right">x</td>
+                                <td align="right">x</td><!--Se alinea a las derecha-->
                             </tr>
                             <tr>
                                 <td><i class="medium material-icons white-text">directions_run</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción de la rutina:</td>
+                                <!--Se pone el icono desde matirialize y lo celeste de las letras son espacios -->
                             </tr>
                             <tr>
                                 <td>x</td>
@@ -37,7 +42,7 @@
         </div>
     }
 </div>
-    @if (Session["UserType"] == null | (Session["UserType"] != null && !(Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
-    {
-        Response.Redirect("~/Information/_Denied");
-    }
+@if (Session["UserType"] == null | (Session["UserType"] != null && !(Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
+{
+    Response.Redirect("~/Information/_Denied");
+}

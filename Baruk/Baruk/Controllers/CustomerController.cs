@@ -118,7 +118,7 @@ namespace Baruk.Controllers
                 {
                     if (x.Cedula == cedula)
                     {
-                        if (Box == "Regular")
+                        if (Box != "on")
                         {
                             var tipoCliente = db.Clientes.Where(j => j.PersonaID == x.PersonaID).FirstOrDefault();
                             tipoCliente.TipoClienteID = 1;
