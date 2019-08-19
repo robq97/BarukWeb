@@ -11,7 +11,7 @@ namespace Baruk.Models
         public int ClienteID { get; set; }
         public int CedulaID  { get; set; }
         public int PersonaID { get; set; }
-        public int GeneroID { get; set; }
+        //public int GeneroID { get; set; }
         public string Comentarios { get; set; }
         public int PagoID { get; set; }
         public int RutinaClienteID { get; set; }

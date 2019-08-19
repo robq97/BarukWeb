@@ -16,5 +16,6 @@ namespace Baruk.Models
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
 
+        public int GeneroID { get; set; }
     }
 }
