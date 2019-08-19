@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Baruk.Models
 {
-     class MPersona
+    public class MPersona
     {
         //Get y Set de los atributos
         public int PersonaID { get; set; }
@@ -17,5 +17,9 @@ namespace Baruk.Models
         public DateTime FechaFin { get; set; }
 
         public int GeneroID { get; set; }
+        public string Apellido { get; set; }
+        public string DescTipoClienteID { get; set; }
+        public string UsuarioCliente { get; set; }
+        public string Email { get; set; }
     }
 }

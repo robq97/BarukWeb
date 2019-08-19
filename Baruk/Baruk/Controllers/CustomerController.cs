@@ -72,12 +72,27 @@ namespace Baruk.Controllers
         // GET: Customer
         public ActionResult MyProfile()
         {
-            var clienteLista = new List<Persona>();
-            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
-            {
-                clienteLista = db.Personas.ToList();
-            }
-            return View(clienteLista);
+
+            CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+            List<Cliente> clientList = db.Clientes.ToList();
+            MCliente clientModel = new MCliente();
+
+            var list = (from p in db.Personas
+                        join c in db.Clientes
+                            on p.PersonaID equals c.PersonaID
+                        join tc in db.TipoClientes
+                            on c.TipoClienteID equals tc.TipoClienteID
+                        select new MCliente
+                        {
+                            Nombre = p.Nombre + " " + p.PrimerApellido,
+                            Cedula = p.Cedula,
+                            DescTipoClienteID = tc.DescTipoCliente,
+                            UsuarioCliente = c.UsuarioCliente,
+                            FechaInicio = p.FechaInicio,
+                            Email = p.Email
+                        }).ToList();
+            return View(list);
+            
         }
 
         // GET: Customer

@@ -19,6 +19,13 @@ namespace Baruk.Models
         public byte TipoClienteID { get; set; }
         public string UsuarioCliente { get; set; }
         public string PasswrdCliente { get; set; }
+
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public int Cedula { get; set; }
+        public string DescTipoClienteID { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public string Email { get; set; }
     }
 
     public static class Static
