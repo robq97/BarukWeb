@@ -1,24 +1,26 @@
 ﻿<div class="row">
-    <h2 class="header white-text">Iniciar Sesión</h2>
-    @using (Html.BeginForm("ClientAuthentication", "Login", FormMethod.Post, new { @class = " card col s12 grey darken-3", @style ="margin-top: 2%;" }))
+    @using (Html.BeginForm("ClientAuthentication", "Login", FormMethod.Post, new { @class = " card col s12 grey darken-3 z-depth-3", @style = "margin-top: 2%;" }))
     {
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="UsuarioCliente" name="UsuarioCliente" type="text" class="validate white-text">
-                    <label for="UsuarioCliente">Usuario</label>
-                </div>
+        <div class="center white-text">
+            <span class="card-title" style="font-size: 55px">Iniciar Sesión</span>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="UsuarioCliente" name="UsuarioCliente" type="text" class="validate white-text" required>
+                <label for="UsuarioCliente"><span class="grey-text text-lighten-2">Usuario</span></label>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="PasswrdCliente" name="PasswrdCliente" type="password" class="validate white-text">
-                    <label for="PasswrdCliente">Contraseña</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="PasswrdCliente" name="PasswrdCliente" type="password" class="validate white-text" required>
+                <label for="PasswrdCliente"><span class="grey-text text-lighten-2">Contraseña</span></label>
             </div>
-            <div class="row center">
-                <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Iniciar Sesión
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
+        </div>
+        <div class="row center">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Iniciar Sesión
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     }
-    </div>
+</div>

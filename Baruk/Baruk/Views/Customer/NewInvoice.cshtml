@@ -3,7 +3,7 @@
 @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
     <div class="row">
-        @using (Html.BeginForm("NewInvoice", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1", @style = "margin-top: 2%;" }))
+        @using (Html.BeginForm("NewInvoice", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1 z-depth-3", @style = "margin-top: 2%;" }))
         {
             <br />
             <div class="center">

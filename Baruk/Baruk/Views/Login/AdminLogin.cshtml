@@ -1,17 +1,19 @@
 ﻿<div class="row">
-    <h2 class="header white-text">Iniciar Sesión</h2>
-    @using (Html.BeginForm("AdminAuthentication", "Login", FormMethod.Post, new { @class = " card col s12 grey darken-3", @style = "margin-top: 2%;" }))
+    @using (Html.BeginForm("AdminAuthentication", "Login", FormMethod.Post, new { @class = " card col s12 grey darken-3 z-depth-3", @style = "margin-top: 2%;" }))
     {
+        <div class="center white-text">
+            <span class="card-title" style="font-size: 55px">Iniciar Sesión</span>
+        </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="UsuarioEspecial" name="UsuarioEspecial" type="text" class="validate white-text">
-                <label for="UsuarioEspecial">Usuario</label>
+                <input id="UsuarioEspecial" name="UsuarioEspecial" type="text" class="validate white-text" required>
+                <label for="UsuarioEspecial"><span class="grey-text text-lighten-2">Usuario</span></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="PasswrdEspecial" name="PasswrdEspecial" type="password" class="validate white-text">
-                <label for="PasswrdEspecial">Contraseña</label>
+                <input id="PasswrdEspecial" name="PasswrdEspecial" type="password" class="validate white-text" required>
+                <label for="PasswrdEspecial"><span class="grey-text text-lighten-2">Contraseña</span></label>
             </div>
         </div>
         <div class="row center">

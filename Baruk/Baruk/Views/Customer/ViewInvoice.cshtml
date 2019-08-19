@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Baruk.Models.MPago>
 
-@if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
+@if (Session["UserType"] != null)
 {
     if (Model != null)
     {
@@ -70,7 +70,7 @@
         </div>
     }
 }
-@if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
+@if (Session["UserType"] == null)
 {
     Response.Redirect("~/Information/_Denied");
 }
