@@ -19,8 +19,8 @@ namespace Baruk.Models
         public string Comentarios { get; set; }
         public Nullable<int> PagoID { get; set; }
         public Nullable<short> RutinaClienteID { get; set; }
-        public int WODID { get; set; }
-        public byte TipoClienteID { get; set; }
+        public Nullable<int> WODID { get; set; }
+        public Nullable<byte> TipoClienteID { get; set; }
         public string UsuarioCliente { get; set; }
         public string PasswrdCliente { get; set; }
     
