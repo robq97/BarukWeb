@@ -92,6 +92,34 @@ namespace Baruk.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Membership(int cedula, string Box)
+        {
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                List<Persona> personas = db.Personas.ToList();
+                List<Cliente> cliente = db.Clientes.ToList();
+                foreach (var x in personas)
+                {
+                    if (x.Cedula == cedula)
+                    {
+                        if (Box == "Regular")
+                        {
+                            var tipoCliente = db.Clientes.Where(j => j.PersonaID == x.PersonaID).FirstOrDefault();
+                            tipoCliente.TipoClienteID = 1;
+                        }
+                        else
+                        {
+                            var tipoCliente = db.Clientes.Where(j => j.PersonaID == x.PersonaID).FirstOrDefault();
+                            tipoCliente.TipoClienteID = 2;
+                        }
+                    }
+                }
+                db.SaveChanges();
+                return View();
+            }
+        }
+
         // GET: Customer
         public ActionResult NewRoutine()
         {
