@@ -28,22 +28,14 @@
                 <tbody>
                     @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
                     {
-                        @*using (Html.BeginForm("SearchInvoice", "Customer", FormMethod.Post, new { @class = "input - field col s6" }))
-                            {
-                                <i class="material-icons prefix">search</i>
-                                <input name="cedula" id="icon_prefix" type="text" class="validate">
-                                <label for="icon_prefix">Ingrese una cédula</label>
-                            }*@
                         foreach (var p in Model)
                         {
-                            //if (p.Cedula.ToString().Equals(Session["Search"]))
-                            //{
                             <tr class="hoverable">
                                 <td>@p.PagoID</td>
                                 <td>@p.Cedula</td>
                                 <td>@p.Nombre</td>
                                 <td>@p.DescTipoSuscripcion</td>
-                                <td>@p.FechaPago</td>
+                                <td>@p.FechaPago.ToString("MM/dd/yyyy")</td>
                                 <td>@p.DescTipoPago</td>
                                 <td>@p.DescTipoDescuento</td>
                                 <td>@p.DescTipoMensualidad</td>
@@ -64,7 +56,7 @@
                                     <td>@p.Cedula</td>
                                     <td>@p.Nombre</td>
                                     <td>@p.DescTipoSuscripcion</td>
-                                    <td>@p.FechaPago</td>
+                                    <td>@p.FechaPago.ToString("MM/dd/yyyy")</td>
                                     <td>@p.DescTipoPago</td>
                                     <td>@p.DescTipoDescuento</td>
                                     <td>@p.DescTipoMensualidad</td>

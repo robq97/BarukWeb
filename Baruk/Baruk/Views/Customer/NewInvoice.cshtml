@@ -32,7 +32,7 @@
                     <td>
                         <div class="input-field col s12">
                             <h6 class="grey-text text-lighten-2">Tipo de Suscripción</h6>
-                            @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "")
+                            @Html.DropDownListFor(model => model.TipoSuscripcion, ViewBag.TipoSuscripcion as SelectList, "", new { required = "required" })
                             @Html.ValidationMessageFor(model => model.TipoSuscripcion, "", new { @class = "validate white-text" })
                         </div>
                     </td>
@@ -46,7 +46,7 @@
                     <td>
                         <div class="input-field col s12">
                             <h6 class="grey-text text-lighten-2">Fecha Pago</h6>
-                            @Html.TextBoxFor(model => model.FechaPago, new { @class = "datepicker white-text", @type = "text" })
+                            @Html.TextBoxFor(model => model.FechaPago, new { @class = "datepicker white-text", @type = "text", required = "required" })
                             @Html.ValidationMessageFor(model => model.FechaPago, "", new { @class = "validate white-text" })
                         </div>
                     </td>
@@ -60,7 +60,7 @@
                     <td>
                         <div class="input-field col s12">
                             <h6 class="grey-text text-lighten-2">Tipo de Pago</h6>
-                            @Html.DropDownListFor(model => model.TipoPagoID, ViewBag.TipoPago as SelectList, "")
+                            @Html.DropDownListFor(model => model.TipoPagoID, ViewBag.TipoPago as SelectList, "", new { required = "required" })
                             @Html.ValidationMessageFor(model => model.TipoPagoID, "", new { @class = "validate white-text" })
                         </div>
                     </td>
@@ -88,7 +88,7 @@
                     <td>
                         <div class="input-field col s12" required>
                             <h6 class="grey-text text-lighten-2">Tipo de Mensualidad</h6>
-                            @Html.DropDownListFor(model => model.TipoMensualidadID, ViewBag.TipoMensualidad as SelectList, "")
+                            @Html.DropDownListFor(model => model.TipoMensualidadID, ViewBag.TipoMensualidad as SelectList, "", new { required = "required" })
                             @Html.ValidationMessageFor(model => model.TipoMensualidadID, "", new { @class = "validate white-text" })
                         </div>
                     </td>
@@ -116,7 +116,7 @@
                     <td>
                         <div class="input-field col s12" required>
                             <h6 class="grey-text text-lighten-2">Tipo de Cliente</h6>
-                            @Html.DropDownListFor(model => model.TipoClinteID, ViewBag.Tclientes as SelectList, "")
+                            @Html.DropDownListFor(model => model.TipoClinteID, ViewBag.Tclientes as SelectList, "", new { required = "required" })
                             @Html.ValidationMessageFor(model => model.TipoClinteID, "", new { @class = "validate white-text" })
                         </div>
                     </td>

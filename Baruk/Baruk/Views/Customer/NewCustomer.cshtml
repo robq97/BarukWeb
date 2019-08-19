@@ -20,7 +20,7 @@
                             <td>
                                 <div class="input-field col s12">
                                     <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
-                                    @Html.TextBoxFor(model => model.Cedula, new { @class = "validate white-text", @type = "text" })
+                                    @Html.TextBoxFor(model => model.Cedula, new { @class = "validate white-text", @type = "number", required = "required" })
                                     @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "validate white-text" })
                                 </div>
                             </td>
@@ -34,7 +34,7 @@
                             <td>
                                 <div class="input-field col s12">
                                     <h6 class="grey-text text-lighten-2">Nombre</h6>
-                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "validate white-text", @type = "text" })
+                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "validate white-text", @type = "text", required = "required" })
                                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "validate white-text" })
                                 </div>
                             </td>
@@ -48,7 +48,7 @@
                             <td>
                                 <div class="input-field col s12">
                                     <h6 class="grey-text text-lighten-2">Primer Apellido</h6>
-                                    @Html.TextBoxFor(model => model.PrimerApellido, new { @class = "validate white-text", @type = "text" })
+                                    @Html.TextBoxFor(model => model.PrimerApellido, new { @class = "validate white-text", @type = "text", required = "required" })
                                     @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "validate white-text" })
                                 </div>
                             </td>
@@ -79,7 +79,7 @@
                         <td>
                             <div class="input-field col s12w white-text">
                                 <h6 class="grey-text text-lighten-2">Género</h6>
-                                @Html.DropDownListFor(model => model.GeneroID, ViewBag.Genero as SelectList, "")
+                                @Html.DropDownListFor(model => model.GeneroID, ViewBag.Genero as SelectList, "", new {@class="", required = "required" })
                                 @Html.ValidationMessageFor(model => model.GeneroID, "", new { @class = "validate white-text" })
                             </div>
 
@@ -97,7 +97,7 @@
                             <td>
                                 <div class="input-field col s12">
                                     <h6 class="grey-text text-lighten-2">Email</h6>
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "validate white-text", @type = "text" })
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "validate white-text", @type = "email"})
                                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "validate white-text" })
                                 </div>
                             </td>
@@ -114,8 +114,8 @@
                             <td>
                                 <div class="input-field col s12">
                                     <h6 class="grey-text text-lighten-2">Fecha Inicio</h6>
-                                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "datepicker white-text", @type = "text" })
-                                    @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "validate white-text" })
+                                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "datepicker white-text validate required", @type = "text", required = "required"})
+                                    @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "white-text" })
                                 </div>
                             </td>
                         </tr>
