@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e272b71ad6af4920a30e712083705503" Name="Diagram1">
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Admin" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Cliente" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Descuento" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Genero" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Morosidad" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Pago" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.Persona" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.RutinasClientesAvanzado" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.sysdiagram" Width="1.5" PointX="8.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.TipoCliente" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.TipoMensualidad" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.TipoPago" Width="1.5" PointX="3.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.TipoRutinaAvanzada" Width="1.5" PointX="1.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.TipoSuscripcion" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CROSSFITBARUKdb.WOD" Width="1.5" PointX="0.75" PointY="23.75" IsExpanded="true" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Admin_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Cliente_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Cliente_TipoCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Persona_Pago" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Persona_RutinasClientesAvanzados" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Persona_WOD" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Pago_Descuentos" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Persona_Genero" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Pago_Morosidad" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Pago_TipoCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Pago_TipoMensualidad" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Pago_TipoPago" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_Pago_TipoSuscripcion" ManuallyRouted="false" />
+        <AssociationConnector Association="CROSSFITBARUKdb.FK_RutinasClientesAvanzados_TipoRutinaAvanzada" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

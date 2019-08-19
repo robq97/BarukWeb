@@ -16,9 +16,8 @@ namespace Baruk.Models
     {
         public short ClienteID { get; set; }
         public short PersonaID { get; set; }
-        public byte GeneroID { get; set; }
         public string Comentarios { get; set; }
-        public int PagoID { get; set; }
+        public Nullable<int> PagoID { get; set; }
         public Nullable<short> RutinaClienteID { get; set; }
         public int WODID { get; set; }
         public byte TipoClienteID { get; set; }
@@ -27,7 +26,6 @@ namespace Baruk.Models
     
         public virtual Persona Persona { get; set; }
         public virtual TipoCliente TipoCliente { get; set; }
-        public virtual Genero Genero { get; set; }
         public virtual Pago Pago { get; set; }
         public virtual RutinasClientesAvanzado RutinasClientesAvanzado { get; set; }
         public virtual WOD WOD { get; set; }

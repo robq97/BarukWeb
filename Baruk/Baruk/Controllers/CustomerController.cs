@@ -33,7 +33,7 @@ namespace Baruk.Controllers
         public ActionResult MyProfile()
         {
             var clienteLista = new List<Persona>();
-            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            using (CROSSFITBARUKEntities1 db = new CROSSFITBARUKEntities1())
             {
                 clienteLista = db.Personas.ToList();
             }
@@ -61,7 +61,7 @@ namespace Baruk.Controllers
         // GET: Customer
         public ActionResult NewInvoice()
         {
-            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            using (CROSSFITBARUKEntities1 db = new CROSSFITBARUKEntities1())
             {
                 List<TipoSuscripcion> suscripciones = db.TipoSuscripcions.ToList();
                 ViewBag.TipoSuscripcion = new SelectList(suscripciones, "TipoSuscripcionID", "DescDetalle");
@@ -83,7 +83,7 @@ namespace Baruk.Controllers
         [HttpPost]
         public ActionResult NewInvoice(Pago pago, Persona persona)
         {
-            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            using (CROSSFITBARUKEntities1 db = new CROSSFITBARUKEntities1())
             {
                 List<TipoSuscripcion> suscripciones = db.TipoSuscripcions.ToList();
                 ViewBag.TipoSuscripcion = new SelectList(suscripciones, "TipoSuscripcionID", "DescDetalle");
@@ -131,7 +131,7 @@ namespace Baruk.Controllers
 
         public ActionResult ViewInvoice()
         {
-            CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+            CROSSFITBARUKEntities1 db = new CROSSFITBARUKEntities1();
             List<Pago> paymentList = db.Pagoes.ToList();
             MPago modeloPago = new MPago();
 

@@ -43,7 +43,7 @@ namespace Baruk.Controllers
         {
             if (ModelState.IsValid)
             {
-                CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+                CROSSFITBARUKEntities1 db = new CROSSFITBARUKEntities1();
                 List<Cliente> clientList = db.Clientes.ToList();
 
                 var user = (from userlist in clientList
@@ -81,7 +81,7 @@ namespace Baruk.Controllers
         {
             if (ModelState.IsValid)
             {
-                CROSSFITBARUKEntities db = new CROSSFITBARUKEntities();
+                CROSSFITBARUKEntities1 db = new CROSSFITBARUKEntities1();
                 List<Admin> adminList = db.Admins.ToList();
 
                 var user = (from userlist in adminList

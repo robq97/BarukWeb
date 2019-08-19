@@ -17,13 +17,13 @@ namespace Baruk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Genero()
         {
-            this.Clientes = new HashSet<Cliente>();
+            this.Personas = new HashSet<Persona>();
         }
     
         public byte GeneroID { get; set; }
         public string DescGenero { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cliente> Clientes { get; set; }
+        public virtual ICollection<Persona> Personas { get; set; }
     }
 }
