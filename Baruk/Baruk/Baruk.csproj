@@ -276,6 +276,9 @@
     <Content Include="Public\css\materialize.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Public\img\parallax2.jpg" />
+    <Content Include="Public\img\parallax3.jpg" />
+    <Content Include="Public\img\parallax4.jpg" />
     <Content Include="Public\img\Quienes somos.jpg" />
     <Content Include="Public\img\facebookIcon.png" />
     <Content Include="Public\img\gymnasticsSmall.png" />
@@ -285,6 +288,8 @@
     <Content Include="Public\img\sample2.jpg" />
     <Content Include="Public\img\sample3.jpg" />
     <Content Include="Public\img\weight.png" />
+    <Content Include="Public\img\weightLift.jpg" />
+    <Content Include="Public\img\weightliftFix.jpg" />
     <Content Include="Public\img\weightlifting.png" />
     <Content Include="Public\img\weightliftingSmall.png" />
     <Content Include="Public\img\weightSmall.png" />
@@ -323,7 +328,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Information\InformationForm.cshtml" />
-    <Content Include="Views\Information\ChooseUs.cshtml" />
+    <Content Include="Views\Information\Gallery.cshtml" />
     <Content Include="Views\Information\WhoAreWe.cshtml" />
     <Content Include="Views\Information\Calendar.cshtml" />
     <Content Include="Views\Customer\NewCustomer.cshtml" />

@@ -15,7 +15,7 @@ namespace Baruk.Controllers
         }
 
         // GET: Information
-        public ActionResult ChooseUs()
+        public ActionResult Gallery()
         {
             return View();
         }

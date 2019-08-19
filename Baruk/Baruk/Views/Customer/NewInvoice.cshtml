@@ -2,6 +2,7 @@
 
 @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
+<div class="container body-content">
     <div class="row">
         @using (Html.BeginForm("NewInvoice", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1 z-depth-3", @style = "margin-top: 2%;" }))
         {
@@ -10,18 +11,18 @@
                 <span class="card-title white-text" style="font-size: 55px">Nueva Factura</span>
             </div>
             <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                    <tr>
-                        <td width="25px">
-                            <i class="small material-icons white-text">person</i>
-                        </td>
-                        <td>
-                            <div class="input-field col s12">
-                                <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
-                                <input id="cedula" name="cedula" type="text" class="validate" required>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <tr>
+                    <td width="25px">
+                        <i class="small material-icons white-text">person</i>
+                    </td>
+                    <td>
+                        <div class="input-field col s12">
+                            <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
+                            <input id="cedula" name="cedula" type="text" class="validate" required>
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
             <table style="border-collapse: separate; border-spacing: 10px 5px;">
                 <tr>
@@ -129,8 +130,9 @@
             </div>
         }
     </div>
-}
-@if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
-{
-    Response.Redirect("~/Information/_Denied");
-}
+</div>
+        }
+        @if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
+        {
+            Response.Redirect("~/Information/_Denied");
+        }

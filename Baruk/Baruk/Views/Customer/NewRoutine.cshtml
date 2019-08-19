@@ -1,5 +1,6 @@
 ﻿@if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
+<div class="container body-content">
     <div class="row">
         <form class=" card col s12 blue-grey darken-1 z-depth-3" style="margin-top: 2%;">
             <div class="center">
@@ -73,8 +74,9 @@
             </div>
         </form>
     </div>
-}
-@if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
-{
-    Response.Redirect("~/Information/_Denied");
-}
+</div>
+        }
+        @if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
+        {
+            Response.Redirect("~/Information/_Denied");
+        }

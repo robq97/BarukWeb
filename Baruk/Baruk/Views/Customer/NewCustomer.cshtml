@@ -3,6 +3,7 @@
 
 @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
+<div class="container body-content">
     <div class="row">
         @using (Html.BeginForm("NewCustomer", "Customer", FormMethod.Post, new { @class = " card col s12 blue-grey darken-1", @style = "margin-top: 2%;" }))
         {
@@ -88,21 +89,21 @@
 
 
                 <div class="row">
-                        <table style="border-collapse: separate; border-spacing: 10px 5px;">
-                            <tr>
-                                <td width="25px">
-                                    <i class="small material-icons">email</i>
-                                </td>
-                                <td>
-                                    <div class="input-field col s12">
-                                        <h6 class="grey-text text-lighten-2">Email</h6>
-                                        @Html.TextBoxFor(model => model.Email, new { @class = "validate white-text", @type = "text" })
-                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "validate white-text" })
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    <table style="border-collapse: separate; border-spacing: 10px 5px;">
+                        <tr>
+                            <td width="25px">
+                                <i class="small material-icons">email</i>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <h6 class="grey-text text-lighten-2">Email</h6>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "validate white-text", @type = "text" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "validate white-text" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
                 <div class="row">
                     <table style="border-collapse: separate; border-spacing: 10px 5px;">
@@ -159,6 +160,7 @@
             </form>
         }
     </div>
+</div>
 }
 @if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
 {
