@@ -8,18 +8,18 @@
                 <img style="margin-top:0.5%; margin-left:2%" src="~/Public/img/logoSmall.png" title="logo" alt="logo" />
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 2%">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("¿Quiénes Somos?", "WhoAreWe", "Information")</li>
-                <li>@Html.ActionLink("Galería", "Gallery", "Information")</li>
+                <li>@Html.ActionLink("¿Porque elegirnos?", "ChooseUs", "Information")</li>
                 <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
-                <li><a href="@Url.Action("Login","Login/LogIn")" class="waves-effect waves-light light-green accent-4 btn">Iniciar Sesión</a></li>
+                <li><a href="@Url.Action("Login","Login/LogIn")" class="waves-effect waves-light btn">Iniciar Sesión</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="menu-responsive">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li>@Html.ActionLink("¿Quiénes Somos?", "WhoAreWe", "Information")</li>
-        <li>@Html.ActionLink("Galería", "Gallery", "Information")</li>
+        <li>@Html.ActionLink("¿Porque elegirnos?", "ChooseUs", "Information")</li>
         <li>@Html.ActionLink("Contáctenos", "InformationForm", "Information")</li>
         <li><a href="@Url.Action("Login","Login/LogIn")" class="waves-effect waves-light btn">Iniciar Sesión</a></li>
     </ul>
@@ -27,7 +27,7 @@
 
 @if (Session["UserType"] != null && Session["UserType"].Equals("1"))
 {
-    <nav class="light-blue darken-4">
+    <nav class=" deep-orange darken-1">
         <div class="nav-wrapper">
             <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
@@ -52,7 +52,7 @@
 
 @if (Session["UserType"] != null && Session["UserType"].Equals("2"))
 {
-    <nav class="light-blue darken-4">
+    <nav class="orange accent-3">
         <div class="nav-wrapper">
             <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="@Url.Action("Index", "Home")" class="navbar-brand ">
@@ -77,7 +77,7 @@
 }
 @if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
     {
-        <nav class="light-blue darken-4">
+        <nav class="grey darken-1">
             <div class="nav-wrapper">
                 <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand ">

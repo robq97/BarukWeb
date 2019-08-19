@@ -1,6 +1,5 @@
 ﻿@if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
-<div class="body-content" >
     <div class="col center ">
         <div class="col s6 m6 center " style="padding-left:25%; padding-right:25%; margin-top:10%; margin-bottom:10%;">
             <div class="card small blue-grey darken-1 center z-depth-3">
@@ -10,12 +9,12 @@
                     </div>
                     <p>
                         <div class="row">
-
-                            <div class="input-field col s12">
-                                <i class="small material-icons prefix">perm_identity</i>
-                                <input value="" id="ID" type="text" class="validate white-text" required>
-                                <label class="active" for="ID"><span class="grey-text text-lighten-2">Cédula</span></label>
-                            </div>
+                            
+                                        <div class="input-field col s12">
+                                            <i class="small material-icons prefix">perm_identity</i>
+                                            <input value="" id="ID" type="text" class="validate white-text" required>
+                                            <label class="active" for="ID"><span class="grey-text text-lighten-2">Cédula</span></label>
+                                        </div>
 
                         </div>
                         <div class="switch">
@@ -37,7 +36,6 @@
             </div>
         </div>
     </div>
-</div>
 }
 @if (Session["UserType"] == null | (Session["UserType"] != null && (Session["UserType"].Equals("1") | Session["UserType"].Equals("2"))))
 {
