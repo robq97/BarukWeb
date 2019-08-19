@@ -97,7 +97,7 @@
                             <td>
                                 <div class="input-field col s12">
                                     <h6 class="grey-text text-lighten-2">Email</h6>
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "validate white-text", @type = "email"})
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "validate white-text", @type = "email", required = "required" })
                                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "validate white-text" })
                                 </div>
                             </td>

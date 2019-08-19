@@ -1,10 +1,12 @@
-﻿@if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
+﻿@model Baruk.Models.RutinasClientesAvanzado
+
+@if (Session["UserType"] != null && Session["UserType"].Equals("Admin"))
 {
 <div class="container body-content">
     <div class="row">
         <form class=" card col s12 blue-grey darken-1 z-depth-3" style="margin-top: 2%;">
             <div class="center">
-                <span class="card-title white-text" style="font-size: 55px">Nueva Rutina</span>
+                <span class="card-title white-text" style="font-size: 55px">Nuevo Entrenamiento Funcional</span>
             </div>
             <div class="row">
                 <table style="border-collapse: separate; border-spacing: 10px 5px;">
@@ -14,8 +16,8 @@
                         </td>
                         <td>
                             <div class="input-field col s12">
-                                <input id="instructor" type="text" class="validate white-text" required>
-                                <label for="instructor"><span class="grey-text text-lighten-2">Instructor</span></label>
+                                <h6 class="grey-text text-lighten-2">Instructor</h6>
+                                <input id="Instructor" name="Instructor" type="text" class="validate white-text" required>
                             </div>
                         </td>
                     </tr>
@@ -27,8 +29,8 @@
                         </td>
                         <td>
                             <div class="input-field col s12">
-                                <input id="ID" type="text" class="validate white-text" required>
-                                <label for="ID"><span class="grey-text text-lighten-2">Cédula</span></label>
+                                <h6 class="grey-text text-lighten-2">Cédula del Cliente</h6>
+                                <input id="cedula" name="cedula" type="text" class="validate" style="color:white;" required />
                             </div>
                         </td>
                     </tr>
@@ -40,8 +42,9 @@
                         </td>
                         <td>
                             <div class="input-field col s12">
-                                <input id="date" type="text" class="datepicker white-text" required>
-                                <label for="date"><span class="grey-text text-lighten-2">Fecha de Vencimiento</span></label>
+                                <h6 class="grey-text text-lighten-2">Fecha Pago</h6>
+                                @Html.DropDownListFor(model => model.TipoRutinaID, ViewBag.TipoRutinaID as SelectList, "", new { required = "required" })
+                                @Html.ValidationMessageFor(model => model.TipoRutinaID, "", new { @class = "validate white-text" })
                             </div>
                         </td>
                     </tr>
@@ -54,8 +57,9 @@
                         <td>
 
                             <div class="input-field col s12">
-                                <input id="Desc" type="text" class="validate white-text" required>
-                                <label for="Desc"><span class="grey-text text-lighten-2">Descripción</span></label>
+                                <h6 class="grey-text text-lighten-2">Work out of day</h6>
+                                @Html.TextBoxFor(model => model.DescRutina, new { @class = "validate white-text", @type = "text", required = "required" })
+                                @Html.ValidationMessageFor(model => model.DescRutina, "", new { @class = "validate white-text" })
                             </div>
                         </td>
                     </tr>

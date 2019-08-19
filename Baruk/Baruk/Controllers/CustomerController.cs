@@ -95,7 +95,41 @@ namespace Baruk.Controllers
         // GET: Customer
         public ActionResult NewRoutine()
         {
-            return View();
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                List<TipoRutinaAvanzada> RutinaAvanzada = db.TipoRutinaAvanzadas.ToList();
+                ViewBag.TipoRutinaID = new SelectList(RutinaAvanzada, "TipoRutinaID", "DescRutina");
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult NewRoutine(RutinasClientesAvanzado rutina, Persona person)
+        {
+            using (CROSSFITBARUKEntities db = new CROSSFITBARUKEntities())
+            {
+                List<TipoRutinaAvanzada> RutinaAvanzada = db.TipoRutinaAvanzadas.ToList();
+                ViewBag.TipoRutinaID = new SelectList(RutinaAvanzada, "TipoRutinaID", "DescRutina");
+                RutinasClientesAvanzado laRutina = new RutinasClientesAvanzado();
+                var rutinaID = laRutina.RutinaClienteID; 
+                laRutina.TipoRutinaID = rutina.TipoRutinaID;
+                laRutina.DescRutina = /*"El Instructor asignado es: "+ person.Nombre +"\n El Wod Aignado es: \n" +*/ rutina.DescRutina;
+                db.RutinasClientesAvanzados.Add(laRutina);
+
+                List<Persona> personas = db.Personas.ToList();
+                List<Cliente> cliente = db.Clientes.ToList();
+                foreach (var x in personas)
+                {
+                    if (x.Cedula == person.Cedula)
+                    {
+                        var cambiorutina = db.Clientes.Where(j => j.PersonaID == x.PersonaID).FirstOrDefault();
+                        cambiorutina.RutinaClienteID = rutinaID;
+
+                    }
+                }
+                db.SaveChanges();
+                return View(rutina);
+            }
         }
 
         // GET: Customer
